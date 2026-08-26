@@ -1,0 +1,489 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  list-style: none;
+  text-decoration: none;
+}
+img {
+  width: 100%;
+}
+button,
+input {
+  cursor: pointer;
+}
+
+body {
+  background-color: #000;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 99999;
+}
+header nav {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  width: 40vw;
+  gap: 30px;
+  padding: 10px;
+}
+header nav span {
+  color: #ffffff;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-family: dinneuzeitgroteskltw01-_812426, sans-serif;
+  font-weight: 500;
+  transition: 0.2s ease-in;
+}
+.contact span {
+  transition: 0.2s ease-in-out;
+}
+
+header a span:hover {
+  color: rgb(215, 119, 67);
+  transition: 0.2s ease-in-out;
+}
+.contact {
+  color: #ffffff;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heroTitle {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 125px;
+
+  transform: translateY(20px);
+
+  z-index: 20;
+}
+
+.heroTitle p {
+  text-align: center;
+  position: relative;
+  width: fit-content;
+  justify-self: center;
+  text-transform: uppercase;
+  font-family: dinneuzeitgroteskltw01-_812426, sans-serif;
+  font-weight: 600;
+  z-index: 5;
+}
+.heroTitle p span:first-child {
+  font-size: 20px;
+  color: #ffffff;
+}
+.heroTitle p span:nth-child(3) {
+  font-size: 3rem;
+  color: rgb(230, 122, 64);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  text-shadow: 2px 2px rgb(0, 0, 0);
+}
+.heroTitle p span:last-child {
+  font-weight: 300;
+  color: #ffffff;
+}
+.titleBg {
+  transform: scaleY(1.4) scaleX(13.5);
+  position: absolute;
+  background-color: transparent;
+  color: #ffffffbf;
+  left: 49%;
+  top: 44%;
+  z-index: 4;
+}
+
+/* =========================
+   SLIDER
+========================= */
+
+.heroSlider {
+  position: relative;
+
+  width: 100%;
+
+  /*
+    Hero title-ის შემდეგ დარჩენილ
+    მთელ სივრცეს იკავებს
+  */
+  height: calc(100vh - 125px);
+
+  overflow: hidden;
+
+  flex: 1;
+}
+
+/* =========================
+   SLIDE
+========================= */
+
+.heroSlide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease,
+    visibility 0.8s ease;
+
+  z-index: 1;
+}
+
+.heroSlide.active {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateX(0);
+
+  z-index: 2;
+}
+
+/* IMAGE */
+
+.heroSlide img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center;
+}
+
+/* DARK OVERLAY */
+
+.heroSlide::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.3)
+  );
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+/* =========================
+   CONTENT CENTER
+========================= */
+
+.SlideContent {
+  position: absolute;
+  inset: 0;
+
+  z-index: 5;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+
+  padding-bottom: 20px;
+}
+.heroSlide .SlideContent {
+  opacity: 0;
+  transform: translateX(40px);
+
+  transition:
+    opacity 0.7s ease 0.2s,
+    transform 0.8s ease 0.2s;
+}
+
+.heroSlide.active .SlideContent {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* TITLE */
+
+.SlideContent h1 {
+  margin: 0 0 35px;
+
+  font-size: clamp(4rem, 8vw, 9rem);
+
+  line-height: 0.82;
+
+  font-weight: 800;
+  text-shadow: 2px 4px rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: -7px;
+  color: rgb(241, 132, 132);
+}
+
+/* DATE */
+
+.dates-Btn {
+  display: flex;
+  height: 50%;
+  width: 300px;
+  justify-content: space-between;
+  flex-direction: column;
+
+  background-color: rgb(241, 132, 132);
+  box-shadow: 5px 5px 10px rgba(2, 1, 1, 0.829);
+}
+.dates {
+  height: 70%;
+  gap: 20px;
+  margin-top: 30px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.dates-Btn p {
+  color: #fff;
+  padding: 10px;
+  width: fit-content;
+  background-color: #000;
+  font-size: 30px;
+
+  line-height: 1.35;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* BUTTON */
+
+.buytktBtn {
+  display: flex;
+
+  align-items: center;
+
+ 
+  gap: 10px;
+}
+
+.buytktBtn svg {
+  transform: scaleX(4) scaleY(1.6) translateX(-4px);
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.buytktBtn button {
+  padding: 15px 0;
+  padding-right: 15px;
+
+  background-color: transparent;
+  color: #000;
+
+  border: 2px solid #000;
+
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.buytktBtn button span {
+  background-color: #fff;
+  color: #000;
+
+  padding: 3px;
+
+  transition: 0.3s ease;
+}
+
+.buytktBtn button:hover {
+  background-color: #000;
+  transform: scale(0.98);
+}
+
+.buytktBtn button:hover span {
+  background-color: transparent;
+  color: rgb(255, 121, 94);
+}
+/* =========================
+   DOTS
+========================= */
+
+.heroDots {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 22px;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.heroDot {
+  width: 7px;
+  height: 7px;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  background-color: #ffffff48;
+  opacity: 0.7;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.heroDot:hover {
+  transform: scale(1.3);
+
+  opacity: 1;
+}
+
+.heroDot.active {
+  background: #fff;
+
+  opacity: 1;
+
+  transform: scale(1.25);
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+
+.socIcons {
+  position: fixed;
+
+  left: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 30px;
+
+  padding: 20px;
+
+  background: #000;
+
+  z-index: 99999;
+}
+
+.socIcons svg {
+  width: 24px;
+  height: 24px;
+
+  color: #fff;
+
+  transition: 0.2s ease;
+}
+
+.socIcons a:hover svg {
+  color: rgb(230, 122, 122);
+  transform: scale(1.1);
+}
+
+main section:nth-child(2) {
+  min-height: 100vh;
+}
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .heroTitle {
+    height: 105px;
+  }
+
+  .heroSlider {
+    height: calc(100vh - 105px);
+  }
+
+  .heroTitle p span:first-child {
+    font-size: 15px;
+  }
+
+  .heroTitle p span:nth-child(3) {
+    font-size: 2rem;
+  }
+
+  .heroTitle p span:last-child {
+    font-size: 12px;
+  }
+
+  .SlideContent h1 {
+    font-size: clamp(3.5rem, 15vw, 6rem);
+
+    letter-spacing: -2px;
+
+    margin-bottom: 25px;
+  }
+
+  .dates-Btn p {
+    font-size: 12px;
+  }
+
+  .heroDots {
+    bottom: 15px;
+  }
+
+  .socIcons {
+    display: none;
+  }
+}
