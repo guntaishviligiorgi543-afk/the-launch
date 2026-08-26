@@ -297,7 +297,6 @@ header a span:hover {
 
   align-items: center;
 
- 
   gap: 10px;
 }
 
@@ -439,9 +438,21 @@ header a span:hover {
   transform: scale(1.1);
 }
 
-main section:nth-child(2) {
-  min-height: 100vh;
+ 
+
+.sec2 {
+  background-color: red;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+.sec2 div:nth-child(1){
+  background-color: blue;
+  width: 50%;
+ }
+
 /* =========================
    MOBILE
 ========================= */
