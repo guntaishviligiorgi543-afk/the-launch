@@ -438,8 +438,6 @@ header a span:hover {
   transform: scale(1.1);
 }
 
- 
-
 .sec2 {
   background-color: red;
   min-height: 50vh;
@@ -447,11 +445,36 @@ header a span:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
-.sec2 div:nth-child(1){
-  background-color: blue;
+.sec2 div:nth-child(1) {
   width: 50%;
- }
+  text-transform: uppercase;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+.sec2 div:nth-child(1) h2 span:first-child {
+  background-color: #ffffff;
+  color: #000;
+  padding: 10px 30px;
+  font-size: 3rem;
+}
+.sec2 div:nth-child(1) h2 span:last-child {
+  background-color: #fb9c6d;
+  font-size: 2rem;
+  
+}
+
 
 /* =========================
    MOBILE
