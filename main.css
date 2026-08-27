@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -574,23 +575,22 @@ header a span:hover {
   width: 900px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  padding: 30px 0;
 }
 
 .eventAcordion {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 30px;
-  gap: 20px;
   height: fit-content;
   border-top: 2px solid #ff9475;
 }
 .closedAcordion {
   display: flex;
-  padding: 30px 0px;
   justify-content: space-between;
- }
+  align-items: center;
+  height: 150px;
+}
 .closedAcordion div:first-child {
   position: relative;
   color: #fff;
@@ -598,40 +598,17 @@ header a span:hover {
   flex-direction: column;
 }
 .closedAcordion p {
-  font-size: 20px;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
-  text-transform: uppercase;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
 }
 .closedAcordion h2 {
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
-  text-transform: uppercase;
-  font-size: 24px;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  font-style: normal;
 }
 .closedAcordion svg {
   position: absolute;
-  scale: 3;
   z-index: 999999;
   left: 250px;
   top: 5px;
@@ -643,19 +620,32 @@ header a span:hover {
 }
 .openAcordion {
   display: flex;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   flex-direction: column;
-  font-size: 22px;
+  font-size: 19px;
   gap: 20px;
   color: #ffffff;
-  padding: 10px;
+  padding-bottom: 20px;
 }
 .share {
   display: flex;
-
+  align-items: center;
   gap: 10px;
 }
 .openAcordion svg {
   color: #ffffff;
+  scale: 0.7;
 }
 /* =========================
    MOBILE
