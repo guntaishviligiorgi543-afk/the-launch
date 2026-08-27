@@ -249,17 +249,28 @@
           </div>
         </div>
       </section>
-      <section class="sec2">
-        <div>
-          <h2><span>upcoming</span> <span>shows</span></h2>
+      <section class="sec2" aria-labelledby="upcoming-shows-title">
+        <div class="shows-inner">
+          <div class="shows-rule" aria-hidden="true"></div>
+          <h2 class="shows-title" id="upcoming-shows-title">
+            <span class="shows-title__upcoming">Upcoming</span>
+            <span class="shows-title__shows">Shows</span>
+            <span class="shows-title__pattern" aria-hidden="true"></span>
+          </h2>
+          <div class="shows-divider" aria-hidden="true"></div>
+          <div class="shows-notices">
+            <p>All shows are 18+ to enter and 21+ to purchase alcohol.</p>
+            <p>No smoking inside. Please bring a valid form of ID.</p>
+          </div>
         </div>
-        <div>
-          <p>All shows are 18+ to enter and 21+ to purchase alcohol</p>
-          <p>no smoking inside. please bring a valid form of ID</p>
-        </div>
+      </section>
+      <section class="sec3">
+        <div class="sec3Content" id="eventsAccordion"></div>
       </section>
     </main>
     <footer></footer>
+    <script src="arr.js"></script>
+    <script src="index.js"></script>
     <script>
       const heroSlider = document.querySelector(".heroSlider");
       const slides = document.querySelectorAll(".heroSlide");

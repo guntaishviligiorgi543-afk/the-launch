@@ -85,7 +85,7 @@ header a span:hover {
 }
 .heroTitle p span:nth-child(3) {
   font-size: 3rem;
-  color: rgb(230, 122, 64);
+  color: #ff9475;
   font-family:
     system-ui,
     -apple-system,
@@ -243,7 +243,7 @@ header a span:hover {
   text-transform: uppercase;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   letter-spacing: -7px;
-  color: rgb(241, 132, 132);
+  color: #ff9475;
 }
 
 /* DATE */
@@ -255,7 +255,7 @@ header a span:hover {
   justify-content: space-between;
   flex-direction: column;
 
-  background-color: rgb(241, 132, 132);
+  background-color: #ff9475;
   box-shadow: 5px 5px 10px rgba(2, 1, 1, 0.829);
 }
 .dates {
@@ -438,18 +438,167 @@ header a span:hover {
   transform: scale(1.1);
 }
 
+/* =========================
+   UPCOMING SHOWS
+========================= */
+
 .sec2 {
-  background-color: red;
-  min-height: 50vh;
+  min-height: 100vh;
+  padding: 0 30px 70px;
+  overflow: hidden;
+  background: #000;
+}
+
+.shows-inner {
+  width: min(100%, 1238px);
+  min-height: calc(100vh - 70px);
+  margin: 0 auto;
+  padding-top: 46px;
+}
+
+.shows-rule {
+  width: 355px;
+  height: 3px;
+  margin: 0 auto 42px;
+  background: #fff;
+}
+
+.shows-title {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: fit-content;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(3.6rem, 5vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 1px;
+}
+
+.shows-title__upcoming,
+.shows-title__shows,
+.shows-title__pattern {
+  display: block;
+  padding: 16px 40px 14px;
+}
+
+.shows-title__upcoming {
+  color: #000;
+  background: #fff;
+}
+
+.shows-title__shows {
+  position: relative;
+  color: #000;
+  background: #ff9475;
+  align-self: center;
+  font-size: 0.78em;
+  line-height: 1;
+  padding-left: 25px;
+  padding-right: 38px;
+  padding-top: 13px;
+  padding-bottom: 12px;
+}
+
+.shows-title::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -9px;
+  width: 134px;
+  height: 9px;
+  background: #fff;
+}
+
+.shows-title__pattern {
+  width: 31px;
+  padding: 0;
+  align-self: center;
+  height: calc(1em + 25px);
+  font-size: 0.78em;
+  background: repeating-linear-gradient(65deg, #000 0 2px, #ff9475 2px 4px);
+}
+
+.shows-divider {
+  width: 100%;
+  height: 2px;
+  margin-top: 120px;
+  background: #ff9475;
+  position: relative;
+}
+
+.shows-divider::after {
+  content: "";
+  position: absolute;
+  top: -44px;
+  right: 0;
+  width: 2px;
+  height: 44px;
+  background: #ff9475;
+}
+
+.shows-notices {
+  margin-top: 39px;
+  margin-left: auto;
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  color: #000;
+  text-align: right;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(0.9rem, 1.25vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.shows-notices p {
+  width: fit-content;
+  max-width: 100%;
+  padding: 3px 5px 4px;
+  background: #ff9475;
+}
+.sec3 {
+  min-height: 100vh;
+  background-color: rgb(64, 62, 62);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 }
-.sec2 div:nth-child(1) {
-  width: 50%;
-  text-transform: uppercase;
+.sec3Content {
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.eventAcordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 30px;
+  gap: 20px;
+  height: fit-content;
+  border-top: 2px solid #ff9475;
+}
+.closedAcordion {
+  display: flex;
+  padding: 30px 0px;
+  justify-content: space-between;
+ }
+.closedAcordion div:first-child {
+  position: relative;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.closedAcordion p {
+  font-size: 20px;
   font-family:
     system-ui,
     -apple-system,
@@ -462,25 +611,110 @@ header a span:hover {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
+  text-transform: uppercase;
 }
-.sec2 div:nth-child(1) h2 span:first-child {
-  background-color: #ffffff;
-  color: #000;
+.closedAcordion h2 {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+.closedAcordion svg {
+  position: absolute;
+  scale: 3;
+  z-index: 999999;
+  left: 250px;
+  top: 5px;
+}
+.getTicketBtn {
+  border: 2px solid #ff9475;
   padding: 10px 30px;
-  font-size: 3rem;
+  color: #ff9475;
 }
-.sec2 div:nth-child(1) h2 span:last-child {
-  background-color: #fb9c6d;
-  font-size: 2rem;
-  
+.openAcordion {
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  gap: 20px;
+  color: #ffffff;
+  padding: 10px;
 }
+.share {
+  display: flex;
 
-
+  gap: 10px;
+}
+.openAcordion svg {
+  color: #ffffff;
+}
 /* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 768px) {
+  .sec2 {
+    min-height: 78vh;
+    padding: 0 18px 45px;
+  }
+
+  .shows-inner {
+    min-height: auto;
+    padding-top: 22px;
+  }
+
+  .shows-rule {
+    width: min(62vw, 270px);
+    margin-bottom: 28px;
+  }
+
+  .shows-title {
+    font-size: clamp(2.25rem, 10vw, 3.6rem);
+    letter-spacing: 0;
+  }
+
+  .shows-title__upcoming,
+  .shows-title__shows {
+    padding: 12px 15px 10px;
+  }
+
+  .shows-title__shows {
+    padding-left: 12px;
+    padding-right: 16px;
+  }
+
+  .shows-title__pattern {
+    width: 19px;
+    height: calc(1em + 22px);
+  }
+
+  .shows-title::after {
+    right: 0;
+    bottom: -6px;
+    width: 82px;
+    height: 6px;
+  }
+
+  .shows-divider {
+    margin-top: 72px;
+  }
+
+  .shows-notices {
+    margin-top: 29px;
+    font-size: 0.76rem;
+    letter-spacing: 0.35px;
+    gap: 5px;
+  }
+
   .heroTitle {
     height: 105px;
   }
