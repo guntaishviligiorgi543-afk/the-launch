@@ -37,11 +37,10 @@ header nav {
   padding: 10px;
 }
 header nav span {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: #ffffff;
   font-size: 17px;
   text-transform: uppercase;
-  font-family: dinneuzeitgroteskltw01-_812426, sans-serif;
-  font-weight: 500;
   transition: 0.2s ease-in;
 }
 .contact span {
@@ -617,6 +616,7 @@ header a span:hover {
 .seeMoreBtnBox:hover {
   background-color: #000;
   transition: 0.2s ease-in-out;
+  scale: 0.95;
 }
 .seeMoreBtnBox:hover .seeMoreBtnFrame {
   background-color: #000000;
@@ -644,16 +644,23 @@ header a span:hover {
   color: #fff;
   display: flex;
   flex-direction: column;
+  transition: all 0.2s ease-in-out;
+}
+.closedAcordion div:first-child:hover {
+  color: #ff9475;
+  transition: all 0.2s ease-in-out;
 }
 .closedAcordion p {
   font-family: "Fjalla One", sans-serif;
   font-weight: 400;
+  text-shadow: 2px 2px rgb(0, 0, 0);
 }
 .closedAcordion h2 {
   font-family: "Fjalla One", sans-serif;
   font-weight: 400;
   font-size: 2rem;
   font-style: normal;
+  text-shadow: 2px 2px rgb(0, 0, 0);
 }
 .closedAcordion svg {
   position: absolute;
@@ -699,6 +706,140 @@ header a span:hover {
 .openAcordion svg {
   color: #ffffff;
   scale: 0.7;
+}
+.sec4 {
+  min-height: 50vh;
+  padding: 95px 0 45px;
+  background: #000;
+}
+
+.newsletter {
+  position: relative;
+  width: 80%;
+  max-width: 1200px;
+  min-height: 245px;
+  margin: 0 auto;
+  padding: 72px 5vw 30px;
+  background: #ff9475;
+}
+
+.newsletter h2 {
+  position: absolute;
+  top: -47px;
+  left: 5vw;
+  z-index: 2;
+  color: #fff;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(3rem, 5.2vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.newsletter h2::after {
+  content: "";
+  position: absolute;
+  top: 43%;
+  left: 120px;
+  width: 65.4vw;
+  height: 17px;
+  z-index: -1;
+  background: repeating-linear-gradient(120deg, #000 0 2px, #ff9475 2px 4px);
+}
+.newsletter::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -14px;
+  width: 36%;
+  height: 14px;
+  background: #fff;
+}
+
+.newsletter-content {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 8vw;
+  align-items: center;
+}
+
+.newsletter-content p {
+  color: #000;
+  font:
+    18px/1.5 "Cabin",
+    sans-serif;
+  letter-spacing: 1px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newsletter-form > label {
+  color: #fff;
+  font:
+    700 18px "Cabin",
+    sans-serif;
+}
+
+.newsletter-form input[type="email"] {
+  width: 100%;
+  height: 54px;
+  padding: 8px;
+  border: 3px solid #000;
+  background: #fff;
+  font-size: 18px;
+}
+
+.newsletter-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.subscribe-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: #fff;
+  font:
+    18px/1.5 "Cabin",
+    sans-serif;
+}
+
+.subscribe-check input {
+  width: 24px;
+  height: 24px;
+  accent-color: #ff9475;
+}
+
+.newsletter-actions button {
+  min-width: 230px;
+  height: 54px;
+  border: 3px solid #000;
+  background: #fff;
+  color: #000;
+  font:
+    700 16px "Cabin",
+    sans-serif;
+}
+
+.newsletter-actions button:hover {
+  background: #000;
+  color: #ff9475;
+}
+
+.copyright {
+  margin-top: 72px;
+  color: #fff;
+  text-align: center;
+  font:
+    14px "Cabin",
+    sans-serif;
+  letter-spacing: 4px;
 }
 
 /* =========================
@@ -797,5 +938,51 @@ header a span:hover {
 
   .socIcons {
     display: none;
+  }
+       .sec4 {
+    padding: 80px 18px 35px;
+  }
+
+  .newsletter {
+    padding: 85px 24px 30px;
+  }
+
+  .newsletter h2 {
+    left: 24px;
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+
+  .newsletter h2::after {
+    left: 80px;
+    width: 60vw;
+  }
+
+  .newsletter-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .newsletter-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .newsletter-actions button {
+    width: 100%;
+  }
+
+  .copyright {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+}
+
+} */
+/* @media (max-width: 768px) {
+  .newsletter {
+    width: calc(100% - 36px);
+    min-height: auto;
+    padding: 85px 24px 30px;
   }
 } */

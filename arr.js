@@ -4,7 +4,8 @@ const bands = [
 
     bandName: "Imagine Dragons",
 
-    bandImage: "./images/imagine-dragons.jpg",
+    bandImage:
+      "https://chuffmedia.com/images/artists/ID_031224_05_0724-reto.jpg",
 
     bandDescription: `
       Imagine Dragons is one of the most influential alternative rock bands
@@ -72,7 +73,8 @@ const bands = [
 
     bandName: "The Killers",
 
-    bandImage: "./images/the-killers.jpg",
+    bandImage:
+      "https://i.scdn.co/image/ab6761610000e5eb207b21f3ed0ee96adce3166a",
 
     bandDescription: `
       The Killers are an internationally acclaimed rock band known for
@@ -140,7 +142,8 @@ const bands = [
 
     bandName: "OneRepublic",
 
-    bandImage: "./images/onerepublic.jpg",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGvAb2E2BlVLbDCwjV_8Sq3MAewtrem91vUkwkeA1yFg&s=10",
 
     bandDescription: `
       OneRepublic is an American pop rock band recognized for their
@@ -206,7 +209,8 @@ const bands = [
 
     bandName: "Coldplay",
 
-    bandImage: "./images/coldplay.jpg",
+    bandImage:
+      " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLkwT1Lj3HwOXDhWdh2FMHJnsN7WB_ab4nuo4ueGHfypL7STxgzed06UD_&s=10",
 
     bandDescription: `
       Coldplay is one of the world's most successful alternative rock bands,
@@ -271,7 +275,8 @@ const bands = [
 
     bandName: "Arctic Monkeys",
 
-    bandImage: "./images/arctic-monkeys.jpg",
+    bandImage:
+      " https://i.scdn.co/image/ab6761610000e5eb7da39dea0a72f581535fb11f",
 
     bandDescription: `
       Arctic Monkeys are an English rock band known for their distinctive
@@ -334,7 +339,8 @@ const bands = [
 
     bandName: "Linkin Park",
 
-    bandImage: "./images/linkin-park.jpg",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYONe-JPoyDx4uwKnjgSLLsIC7S8jxndch1EYJuxicjUMidAiQRi8d7oo&s=10",
 
     bandDescription: `
       Linkin Park is one of the most influential rock bands of the modern
@@ -397,7 +403,8 @@ const bands = [
 
     bandName: "Muse",
 
-    bandImage: "./images/muse.jpg",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxKBNUcAFCJv3CQhM8d3wK4l-iNAD8wpqdJEysZ5nUIA&s=10",
 
     bandDescription: `
       Muse are an English rock band recognized for their dramatic sound,
@@ -458,22 +465,24 @@ const bands = [
   {
     id: 8,
 
-    bandName: "Imagine Dragons",
+    bandName: "Nirvana",
 
-    bandImage: "./images/imagine-dragons-2.jpg",
+    bandImage:
+      "https://www.impericon.com/cdn/shop/articles/20230912_nirvanajubilaeum_2_52c5ec1e-4a78-4f5a-b5f3-3b054e9cc10c.jpg?v=1740047327",
 
     bandDescription: `
-      A powerful live rock experience featuring energetic performances,
-      emotional songs and spectacular concert production.
-    `,
+    Nirvana was one of the most influential rock bands of the 1990s,
+    known for their raw sound, powerful performances and major influence
+    on the grunge and alternative rock scene.
+  `,
 
     event: {
-      title: "Imagine Dragons — Summer Night",
+      title: "Nirvana — Live in Georgia",
 
       description: `
-        Enjoy another spectacular Imagine Dragons performance featuring
-        their biggest songs and an incredible live production.
-      `,
+      Experience an unforgettable night of grunge and alternative rock,
+      featuring Nirvana's most iconic songs and a powerful live atmosphere.
+    `,
 
       date: "2026-11-01",
 
@@ -517,13 +526,13 @@ const bands = [
       },
     },
   },
-
   {
     id: 9,
 
     bandName: "Foo Fighters",
 
-    bandImage: "./images/foo-fighters.jpg",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFumryTkx_2jP_Vod2qEUYfaY5wsMQz2-67YC40LSSEHZdvaUofVBREheq&s=10",
 
     bandDescription: `
       Foo Fighters are an iconic American rock band known for their energetic
@@ -586,7 +595,8 @@ const bands = [
 
     bandName: "The Weeknd",
 
-    bandImage: "./images/the-weeknd.jpg",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZka76z7-djUz7KSdGLaa-1MQD4dhwFv_FjpzsTkT3uA&s=10",
 
     bandDescription: `
       The Weeknd is one of the world's most successful contemporary artists,
@@ -640,6 +650,143 @@ const bands = [
       coordinates: {
         lat: 41.7239,
         lng: 44.7888,
+      },
+    },
+  },
+  {
+    id: 11,
+    bandName: "The Generators",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnhjHq08RifX-zvqNs4JyuCDCevmVUSJqdKkqdLFUBYq4-cr6oZbzakk0G&s=10",
+    bandDescription: "The Generators live performance.",
+
+    event: {
+      title: "The Generators — Live in Georgia",
+      description:
+        "Experience The Generators live in an unforgettable night of music.",
+      date: "2026-04-04",
+      time: "19:00",
+      doorsOpen: "18:00",
+    },
+
+    tickets: {
+      cheap: {
+        name: "Standard",
+        price: 80,
+        currency: "₾",
+      },
+      medium: {
+        name: "Premium",
+        price: 150,
+        currency: "₾",
+      },
+      vip: {
+        name: "VIP",
+        price: 300,
+        currency: "₾",
+      },
+    },
+
+    location: {
+      city: "San Francisco",
+      venue: "Goldcountry",
+      address: "San Francisco, CA",
+      map: "",
+      coordinates: {
+        lat: 0,
+        lng: 0,
+      },
+    },
+  },
+
+  {
+    id: 12,
+    bandName: "Badlands Bound",
+    bandImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnhjHq08RifX-zvqNs4JyuCDCevmVUSJqdKkqdLFUBYq4-cr6oZbzakk0G&s=10",
+    bandDescription: "Balands Bound live performance.",
+
+    event: {
+      title: "Balands Bound — Live in Georgia",
+      description:
+        "Experience Balands Bound live in an unforgettable night of music.",
+      date: "2026-04-05",
+      time: "20:00",
+      doorsOpen: "18:30",
+    },
+
+    tickets: {
+      cheap: {
+        name: "Standard",
+        price: 80,
+        currency: "₾",
+      },
+      medium: {
+        name: "Premium",
+        price: 150,
+        currency: "₾",
+      },
+      vip: {
+        name: "VIP",
+        price: 300,
+        currency: "₾",
+      },
+    },
+
+    location: {
+      city: "San Francisco",
+      venue: "Black Sea Arena",
+      address: "San Francisco, CA",
+      map: "",
+      coordinates: {
+        lat: 0,
+        lng: 0,
+      },
+    },
+  },
+
+  {
+    id: 13,
+    bandName: "Smoking Gun",
+    bandImage:
+      "https://static.wixstatic.com/media/ea71bb_60599895bdbe4dd182196074e555d5d8~mv2_d_5171_1640_s_2.jpg/v1/fill/w_1901,h_716,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea71bb_60599895bdbe4dd182196074e555d5d8~mv2_d_5171_1640_s_2.jpg",
+    bandDescription: "Smoking Gun live performance.",
+
+    event: {
+      title: "Smoking Gun — Live in Georgia",
+      description:
+        "Experience Smoking Gun live in an unforgettable night of music.",
+      date: "2026-04-07",
+      time: "20:00",
+      doorsOpen: "18:00",
+    },
+
+    tickets: {
+      cheap: {
+        name: "Standard",
+        price: 80,
+        currency: "₾",
+      },
+      medium: {
+        name: "Premium",
+        price: 150,
+        currency: "₾",
+      },
+      vip: {
+        name: "VIP",
+        price: 300,
+        currency: "₾",
+      },
+    },
+
+    location: {
+      city: "San Francisco",
+      venue: "Stonesmith",
+      address: "San Francisco, CA",
+      map: "",
+      coordinates: {
+        lat: 0,
+        lng: 0,
       },
     },
   },
