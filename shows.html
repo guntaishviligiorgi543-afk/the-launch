@@ -67,7 +67,6 @@
       height: 65px;
       background: repeating-linear-gradient(65deg, #000 0 2px, #ff9475 2px 4px);
     }
-
     .calendar-title::after {
       content: "";
       position: absolute;
@@ -133,32 +132,66 @@
       font-size: 15px;
       font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     }
+    .getTicketBtn {
+      text-transform: uppercase;
+    }
     .infoCont {
       position: absolute;
       inset: 0;
-
       padding: 14px;
 
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 10px;
+
       font-family: "Courier New", Courier, monospace;
+
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-
       transition: 0.3s ease;
+
+      background-color: rgb(0, 0, 0);
+
+      overflow: hidden;
     }
+
+    .infoScroll {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      padding-right: 5px;
+    }
+
+    .infoCont .getTicketBtn {
+      flex-shrink: 0;
+      width: fit-content;
+      margin-top: auto;
+      text-transform: uppercase;
+    }
+
+    .infoScroll::-webkit-scrollbar {
+      width: 0;
+    }
+
     .closeInf {
       font-size: 20px;
       transition: all 0.2s ease-in-out;
       padding: 4px;
+      flex-shrink: 0;
     }
+
     .closeInf:hover {
       background-color: #ff9475;
       color: #000;
-      transition: all 0.2s ease-in-out;
     }
+
     .vntCrd.showInfo .cardContent {
       opacity: 0;
       visibility: hidden;
@@ -169,6 +202,7 @@
       visibility: visible;
       transform: translateY(0);
     }
+
     .getTicketBtn {
       width: fit-content;
     }
@@ -303,6 +337,37 @@
           <div class="eventCards"></div>
         </div>
       </section>
+      <section class="sec4" aria-labelledby="newsletter-title">
+        <div class="newsletter">
+          <h2 id="newsletter-title">Stay up to date</h2>
+
+          <div class="newsletter-content">
+            <p>
+              With all the latest concerts and events. Sign up<br />
+              to get our newsletter
+            </p>
+
+            <form class="newsletter-form">
+              <label for="email">Email *</label>
+              <input id="email" type="email" name="email" required />
+
+              <div class="newsletter-actions">
+                <label class="subscribe-check">
+                  <input type="checkbox" required />
+                  <span>Yes, subscribe me to your newsletter. *</span>
+                </label>
+
+                <button type="submit">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <p class="copyright">
+          LIVE LOCAL MUSIC, FOOD &amp; DRINKS ©2035 BY THE LAUNCH. Powered and
+          secured by <u>Wix</u>
+        </p>
+      </section>
     </main>
     <script src="arr.js"></script>
     <script>
@@ -324,44 +389,52 @@
       </div>
 
       <button class="moreInfoBtn">more info</button>
-
-      <button class="getTicketBtn">get tickets</button>
-
+ <button class="getTicketBtn" data-id="${band.id}">
+  get tickets
+</button>
+ 
     </div>
 
-    <div class="infoCont">
+ <div class="infoCont">
 
-      <span class="closeInf">X</span>
+  <span class="closeInf">X</span>
 
-      <div>
-        <h2>${band.event.title}</h2>
-        <p>${band.event.date} — ${band.event.time}</p>
-      </div>
+  <div class="infoScroll">
 
-      <p>${band.event.description}</p>
-
-      <p>
-        Doors open: ${band.event.doorsOpen}
-      </p>
-
-      <p>
-        ${band.location.venue}<br>
-        ${band.location.address}
-      </p>
-
-      <button class="getTicketBtn">get tickets</button>
-
+    <div>
+      <h2>${band.event.title}</h2>
+      <p>${band.event.date} — ${band.event.time}</p>
     </div>
-  `;
+
+    <p>${band.event.description}</p>
+
+    <p>
+      Doors open: ${band.event.doorsOpen}
+    </p>
+
+    <p>
+      ${band.location.venue}<br>
+      ${band.location.address}
+    </p>
+
+ <button class="getTicketBtn" data-id="${band.id}">
+  get tickets
+</button>
+ 
+</div>
+   `;
 
         eventCards.appendChild(card);
       });
     </script>
+
     <script>
       const moreInfoBtns = document.querySelectorAll(".moreInfoBtn");
 
       moreInfoBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+
           const card = btn.closest(".vntCrd");
 
           card.classList.add("showInfo");
@@ -369,10 +442,32 @@
       });
 
       document.querySelectorAll(".closeInf").forEach((closeBtn) => {
-        closeBtn.addEventListener("click", () => {
+        closeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+
           const card = closeBtn.closest(".vntCrd");
 
           card.classList.remove("showInfo");
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        const openCard = document.querySelector(".vntCrd.showInfo");
+
+        if (!openCard) return;
+
+        const infoCont = openCard.querySelector(".infoCont");
+
+        // infoCont-ის გარეთ ნებისმიერი click → დახურვა
+        if (!infoCont.contains(e.target)) {
+          openCard.classList.remove("showInfo");
+        }
+      });
+      document.querySelectorAll(".getTicketBtn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const bandId = button.dataset.id;
+
+          window.location.href = `getTickets.html?id=${bandId}`;
         });
       });
     </script>

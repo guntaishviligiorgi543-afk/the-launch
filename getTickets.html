@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+    <style>
+      :root {
+        --accent: #ff9475;
+        --text: #ffffff;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      main {
+        position: relative;
+        isolation: isolate;
+      }
+
+      section {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        align-items: ce;
+      }
+
+      .tittle-date-dcrp-btn {
+        width: min(900px, calc(100% - 40px));
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .tittle-date-dcrp-btn h2 {
+        max-width: 100%;
+        font-size: clamp(2.2rem, 6vw, 4.5rem);
+        line-height: 1;
+        color: var(--text);
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+
+      .tittle-date-dcrp-btn p {
+        color: var(--text);
+        font-family: "Cabin", sans-serif;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.6;
+      }
+
+      .selectTktBtn {
+        font-size: 1.25rem;
+        width: fit-content;
+        align-self: center;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        padding: 10px 20px;
+        border: 2px solid #ff9475;
+        color: #ff9475;
+        text-transform: uppercase;
+        text-decoration: underline;
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .selectTktBtn:hover {
+        background-color: var(--accent);
+        color: #000;
+      }
+
+      .sec2 {
+        min-height: 150vh;
+        background-color: rgb(44, 42, 42);
+        color: var(--text);
+        display: flex;
+        align-items: end;
+        justify-content: center;
+      }
+      .sec2Content {
+        width: min(900px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        height: 50%;
+      }
+
+      .sec2Content h3 {
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 100;
+        text-transform: capitalize;
+      }
+
+      .sec2Content p {
+        font-family: "Cabin", sans-serif;
+        font-size: clamp(1rem, 2vw, 1.35rem);
+        line-height: 1.5;
+      }
+
+      .ticketInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+      }
+      .ticketInfo > div {
+        width: 50%;
+        margin: 10px 0;
+        border-right: 1px solid #ffffff;
+      }
+      .map {
+        height: 280px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .sec2 svg {
+        color: var(--text);
+      }
+
+      .bandImg2 {
+        position: absolute;
+        top: calc(100vh - 250px);
+        left: 50%;
+        z-index: 2;
+        width: min(60%, 900px);
+        height: 500px;
+        transform: translateX(-50%);
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(50%);
+        pointer-events: none;
+      }
+
+      .timeLocation {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      @media (max-width: 640px) {
+        .tittle-date-dcrp-btn {
+          width: calc(100% - 24px);
+          padding: 140px 20px 50px;
+        }
+
+        .ticketInfo {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .map {
+          height: 230px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html"><span>home</span></a>
+        <a href="shows.html"><span>shows</span></a>
+        <a href="#"> <span>venue</span></a
+        ><a href="#"> <span>contact</span></a>
+      </nav>
+      <a class="contact" href="#">
+        <span>500 TERRY FRANCOIS ST. SAN FRANCISCO, CA 94158 </span></a
+      >
+    </header>
+    <main>
+      <section>
+        <div class="socIcons">
+          <a href="#"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                fill="currentColor"
+                d="M9.602 21.026v-7.274H6.818a.545.545 0 0 1-.545-.545V10.33a.545.545 0 0 1 .545-.545h2.773V7a4.547 4.547 0 0 1 4.86-4.989h2.32a.556.556 0 0 1 .557.546v2.436a.557.557 0 0 1-.557.545h-1.45c-1.566 0-1.867.742-1.867 1.833v2.413h3.723a.533.533 0 0 1 .546.603l-.337 2.888a.545.545 0 0 1-.545.476h-3.364v7.274a.96.96 0 0 1-.975.974h-1.937a.96.96 0 0 1-.963-.974"
+              />
+            </svg>
+          </a>
+          <a href="#"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                fill="currentColor"
+                d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578a9.3 9.3 0 0 1-2.958 1.13a4.66 4.66 0 0 0-7.938 4.25a13.23 13.23 0 0 1-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 0 0 3.96 9.824a4.65 4.65 0 0 1-2.11-.583v.06a4.66 4.66 0 0 0 3.737 4.568a4.7 4.7 0 0 1-2.104.08a4.66 4.66 0 0 0 4.352 3.234a9.35 9.35 0 0 1-5.786 1.995a10 10 0 0 1-1.112-.065a13.2 13.2 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254q0-.301-.014-.602a9.5 9.5 0 0 0 2.323-2.41z"
+              />
+            </svg>
+          </a>
+          <a href="#"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M7.465 1.066C8.638 1.012 9.012 1 12 1s3.362.013 4.534.066s1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12s-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.4 5.4 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066s-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.4 5.4 0 0 1-1.949-1.268a5.4 5.4 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12s.013-3.362.066-4.534s.24-1.972.511-2.672a5.4 5.4 0 0 1 1.27-1.948a5.4 5.4 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511m8.98 1.98c-1.16-.053-1.508-.064-4.445-.064s-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.4 3.4 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445s.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064s3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16.064-1.508.064-4.445s-.011-3.285-.064-4.445c-.049-1.073-.228-1.655-.379-2.043c-.2-.513-.437-.88-.822-1.265a3.4 3.4 0 0 0-1.265-.822c-.388-.151-.97-.33-2.043-.379m-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986M8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996m10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+          <a href="#"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <g fill="none">
+                <g clip-path="url(#SVGXv8lpc2Y)">
+                  <path
+                    fill="currentColor"
+                    d="M23.5 6.507a2.8 2.8 0 0 0-.766-1.27a3.05 3.05 0 0 0-1.338-.742C19.518 4 11.994 4 11.994 4a77 77 0 0 0-9.39.47a3.16 3.16 0 0 0-1.338.76c-.37.356-.638.795-.778 1.276A29 29 0 0 0 0 12c-.012 1.841.151 3.68.488 5.494c.137.479.404.916.775 1.269s.833.608 1.341.743c1.903.494 9.39.494 9.39.494a77 77 0 0 0 9.402-.47a3.05 3.05 0 0 0 1.338-.742a2.8 2.8 0 0 0 .765-1.27A28.4 28.4 0 0 0 24 12.023a26.6 26.6 0 0 0-.5-5.517M9.602 15.424V8.577l6.26 3.424z"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="SVGXv8lpc2Y">
+                    <path fill="#fff" d="M0 0h24v24H0z" />
+                  </clipPath>
+                </defs>
+              </g>
+            </svg>
+          </a>
+        </div>
+
+        <a class="heroTitle" href="index.html">
+          <p>
+            <span>the</span> <br />
+            <span>launch</span><br />
+            <span>where music matter</span>
+          </p>
+
+          <svg
+            class="titleBg"
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path d="M0 0h24v24H0z" fill="none" />
+
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="
+          m2 6 4-4
+          M2 12 12 2
+          M2 18 18 2
+          M2 24 24 2
+          M8 24 24 8
+          M14 24 24 14
+          M20 24 24 20
+        "
+            />
+          </svg>
+        </a>
+        <div class="tittle-date-dcrp-btn">
+          <h2 class="bandNam">Band Name</h2>
+          <p>Event Date</p>
+          <p>band description</p>
+          <button class="selectTktBtn">get tickets</button>
+        </div>
+      </section>
+      <img class="bandImg2" src="" alt="" />
+      <!-- position absolute img on first ans second sections -->
+      <section class="sec2">
+        <div class="sec2Content">
+          <div class="timeLocation">
+            <h3>time & location</h3>
+            <p>time</p>
+            <p>location</p>
+          </div>
+          <div class="tickets">
+            <h3>tickets</h3>
+            <div class="ticketInfo">
+              <div>
+                <p>price</p>
+                <p class="premiumPrice"></p>
+                <p class="vipPrice"></p>
+              </div>
+              <button class="selectTktBtn">select tickets</button>
+            </div>
+          </div>
+          <div class="map">map</div>
+          <div class="shareEvent">
+            <h3>share this event</h3>
+            <div>
+              <a href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M9.602 21.026v-7.274H6.818a.545.545 0 0 1-.545-.545V10.33a.545.545 0 0 1 .545-.545h2.773V7a4.547 4.547 0 0 1 4.86-4.989h2.32a.556.556 0 0 1 .557.546v2.436a.557.557 0 0 1-.557.545h-1.45c-1.566 0-1.867.742-1.867 1.833v2.413h3.723a.533.533 0 0 1 .546.603l-.337 2.888a.545.545 0 0 1-.545.476h-3.364v7.274a.96.96 0 0 1-.975.974h-1.937a.96.96 0 0 1-.963-.974"
+                  />
+                </svg>
+              </a>
+              <a href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578a9.3 9.3 0 0 1-2.958 1.13a4.66 4.66 0 0 0-7.938 4.25a13.23 13.23 0 0 1-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 0 0 3.96 9.824a4.65 4.65 0 0 1-2.11-.583v.06a4.66 4.66 0 0 0 3.737 4.568a4.7 4.7 0 0 1-2.104.08a4.66 4.66 0 0 0 4.352 3.234a9.35 9.35 0 0 1-5.786 1.995a10 10 0 0 1-1.112-.065a13.2 13.2 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254q0-.301-.014-.602a9.5 9.5 0 0 0 2.323-2.41z"
+                  />
+                </svg>
+              </a>
+              <a href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    d="M7.465 1.066C8.638 1.012 9.012 1 12 1s3.362.013 4.534.066s1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12s-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.4 5.4 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066s-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.4 5.4 0 0 1-1.949-1.268a5.4 5.4 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12s.013-3.362.066-4.534s.24-1.972.511-2.672a5.4 5.4 0 0 1 1.27-1.948a5.4 5.4 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511m8.98 1.98c-1.16-.053-1.508-.064-4.445-.064s-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.4 3.4 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445s.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064s3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16.064-1.508.064-4.445s-.011-3.285-.064-4.445c-.049-1.073-.228-1.655-.379-2.043c-.2-.513-.437-.88-.822-1.265a3.4 3.4 0 0 0-1.265-.822c-.388-.151-.97-.33-2.043-.379m-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986M8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996m10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="sec4" aria-labelledby="newsletter-title">
+        <div class="newsletter">
+          <h2 id="newsletter-title">Stay up to date</h2>
+
+          <div class="newsletter-content">
+            <p>
+              With all the latest concerts and events. Sign up<br />
+              to get our newsletter
+            </p>
+
+            <form class="newsletter-form">
+              <label for="email">Email *</label>
+              <input id="email" type="email" name="email" required />
+
+              <div class="newsletter-actions">
+                <label class="subscribe-check">
+                  <input type="checkbox" required />
+                  <span>Yes, subscribe me to your newsletter. *</span>
+                </label>
+
+                <button type="submit">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <p class="copyright">
+          LIVE LOCAL MUSIC, FOOD &amp; DRINKS ©2035 BY THE LAUNCH. Powered and
+          secured by <u>Wix</u>
+        </p>
+      </section>
+    </main>
+    <script src="arr.js"></script>
+    <script src="getTickets.js"></script>
+  </body>
+</html>

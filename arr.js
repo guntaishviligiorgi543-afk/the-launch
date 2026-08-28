@@ -1,12 +1,9 @@
 const bands = [
   {
     id: 1,
-
     bandName: "Imagine Dragons",
-
     bandImage:
       "https://chuffmedia.com/images/artists/ID_031224_05_0724-reto.jpg",
-
     bandDescription: `
       Imagine Dragons is one of the most influential alternative rock bands
       of the modern era. Known for their powerful live performances,
@@ -66,6 +63,8 @@ const bands = [
         lng: 44.7888,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkpY6CiGhlJSUm5OxRCSjXhwCz23bp-WsBREo33xafONrJJQerAnRj1GVG&s=10",
   },
 
   {
@@ -135,6 +134,8 @@ const bands = [
         lng: 41.9355,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCj5gKXw46nytpQRAYakOC6K0hSwCY5ZGvR7aRssJMlWhCDVGCY_eQ1Jg7&s=10",
   },
 
   {
@@ -203,6 +204,8 @@ const bands = [
         lng: 41.9355,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBtcyQpVtYZbVlJDikktTLXNOkFtZsbUSTMz4U-QdQmg&s=10",
   },
   {
     id: 4,
@@ -268,6 +271,8 @@ const bands = [
         lng: 44.7888,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA5GSzvp0C3jpIXEvS4MF8EWycdhuweBDO5ASnAisJi682fQu2pAYxO-_k&s=10",
   },
 
   {
@@ -332,6 +337,8 @@ const bands = [
         lng: 44.7925,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_XME-3sZqcOr_80izVpd93iqJM6AloTBsOnXAXrupoA&s=10",
   },
 
   {
@@ -396,6 +403,8 @@ const bands = [
         lng: 44.7888,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh1KSurxJEN8Dza0E3jKNBDUMYsBUmihGy1_DHJcp7RTIijh3dbJru_ysM&s=10",
   },
 
   {
@@ -460,6 +469,8 @@ const bands = [
         lng: 44.7888,
       },
     },
+    bandImg2:
+      "https://img.cooplive.com/5ojmf2bIu0PI42GdTogPKFkMh0OgFigGVtuuM4TIoEg/c:2426:1364:fp:0.5:0.33/s:1920:1080:1/aHR0cHM6Ly93d3cuY29vcGxpdmUuY29tLy9jbXNfZmlsZXMvc3lzdGVtL2ltYWdlcy9pbWczNzQyX29yaWcuanBn",
   },
 
   {
@@ -525,6 +536,8 @@ const bands = [
         lng: 44.7396,
       },
     },
+    bandImg2:
+      "https://static.independent.co.uk/s3fs-public/thumbnails/image/2013/09/19/17/nirvana.jpg",
   },
   {
     id: 9,
@@ -588,6 +601,8 @@ const bands = [
         lng: 44.7888,
       },
     },
+    bandImg2:
+      "https://guitar.com/wp-content/uploads/2019/02/foo-fighters-dave-grohl@1400x1050-scaled.jpg",
   },
 
   {
@@ -652,6 +667,8 @@ const bands = [
         lng: 44.7888,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3nLNZttCHnzPjTH1Fb2H8K9ZlQtvblGeCQvtY24SNj_cxKL6uyTWKztT&s=10",
   },
   {
     id: 11,
@@ -697,6 +714,8 @@ const bands = [
         lng: 0,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWhhHQTJ7zEqvYhfiqoTCrex4sFxPHehbxhfAdphT3Kg&s=10",
   },
 
   {
@@ -743,6 +762,8 @@ const bands = [
         lng: 0,
       },
     },
+    bandImg2:
+      "https://static.wixstatic.com/media/ea71bb_8dc1b4d1d3204d5fb55e333b736ffe2e~mv2_d_5600_3738_s_4_2.jpg/v1/fill/w_640,h_360,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/ea71bb_8dc1b4d1d3204d5fb55e333b736ffe2e~mv2_d_5600_3738_s_4_2.jpg",
   },
 
   {
@@ -789,5 +810,7 @@ const bands = [
         lng: 0,
       },
     },
+    bandImg2:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3e7GG44ZNexUIVTDicQ8sTkyuWBEVyh6xXEnp7q-17-Z_S3s-fDE_kw0&s=10",
   },
 ];
