@@ -715,14 +715,14 @@ const bands = [
       },
     },
     bandImg2:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWhhHQTJ7zEqvYhfiqoTCrex4sFxPHehbxhfAdphT3Kg&s=10",
+      "https://static.wixstatic.com/media/ea71bb_7122ae50f1d94e319a672f70ee15c02f~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_1225,h_716,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea71bb_7122ae50f1d94e319a672f70ee15c02f~mv2_d_6000_4000_s_4_2.jpg",
   },
 
   {
     id: 12,
     bandName: "Badlands Bound",
     bandImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnhjHq08RifX-zvqNs4JyuCDCevmVUSJqdKkqdLFUBYq4-cr6oZbzakk0G&s=10",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwUKxXwewmY36j8hGb1cgE01Q2AmlfoerS1FJL0nu_Cw&s",
     bandDescription: "Balands Bound live performance.",
 
     event: {

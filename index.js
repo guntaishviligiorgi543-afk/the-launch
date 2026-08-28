@@ -73,10 +73,9 @@ upcomingBands.forEach((band) => {
 
       </div>
 
-      <button class="getTicketBtn">
-        <span>get tickets</span>
-      </button>
-
+ <button class="getTicketBtn" data-id="${band.id}">
+  <span>get tickets</span>
+</button>
     </div>
 
     <div class="openAcordion">
@@ -119,11 +118,18 @@ upcomingBands.forEach((band) => {
   const closed = accordion.querySelector(".closedAcordion");
 
   closed.addEventListener("click", function (e) {
-    // Get Tickets-ზე accordion არ გაიხსნას
-    if (e.target.closest(".getTicketBtn")) {
+    const ticketBtn = e.target.closest(".getTicketBtn");
+
+    // თუ Get Tickets-ს დააჭირე
+    if (ticketBtn) {
+      const bandId = ticketBtn.dataset.id;
+
+      window.location.href = `getTickets.html?id=${bandId}`;
+
       return;
     }
 
+    // სხვა ადგილას დაჭერისას accordion გაიხსნას/დაიხუროს
     if (open.style.display === "none") {
       open.style.display = "flex";
     } else {
@@ -131,6 +137,7 @@ upcomingBands.forEach((band) => {
     }
   });
 
+  // accordion-ის დამატება
   eventsAccordion.appendChild(accordion);
 });
 
