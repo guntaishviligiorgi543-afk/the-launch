@@ -40,6 +40,7 @@ header nav span {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: #ffffff;
   font-size: 17px;
+  font-weight: 100;
   text-transform: uppercase;
   transition: 0.2s ease-in;
 }

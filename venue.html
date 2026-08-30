@@ -322,6 +322,166 @@
       transform: rotatey(180deg);
       scale: 1.5;
     }
+
+    .imageModal {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+
+      background: rgba(0, 0, 0, 0.94);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 9999;
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    }
+
+    .imageModal.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .modalImage {
+      max-width: 85%;
+      max-height: 85vh;
+
+      object-fit: contain;
+
+      user-select: none;
+      -webkit-user-drag: none;
+
+      transition: opacity 0.2s ease;
+    }
+
+    .modalClose {
+      position: absolute;
+      top: 55px;
+      right: 20px;
+
+      width: 60px;
+      height: 60px;
+
+      padding: 0;
+      margin: 0;
+
+      border: none;
+      background: transparent;
+
+      color: white;
+      font-size: 45px;
+      font-weight: 200;
+      line-height: 60px;
+      text-align: center;
+
+      cursor: pointer;
+      z-index: 10000;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+    .modalClose:hover {
+      background-color: #f4a185;
+      color: #000;
+    }
+    .modalClose::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    /* arrows */
+
+    .modalArrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 60px;
+      height: 60px;
+
+      border: none;
+      background: transparent;
+
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      z-index: 2;
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .modalPrev {
+      left: 25px;
+    }
+
+    .modalNext {
+      right: 25px;
+    }
+
+    .modalPrev:hover {
+      transform: translateY(-50%) translateX(-5px);
+    }
+
+    .modalNext:hover {
+      transform: translateY(-50%) translateX(5px);
+    }
+    .catalogActions {
+      pointer-events: none;
+    }
+
+    .catalogActions button {
+      pointer-events: auto;
+    }
+    body:has(.imageModal.active) header,
+    body:has(.imageModal.active) .socIcons {
+      display: none;
+    }
+    /* mobile */
+
+    @media (max-width: 600px) {
+      .modalImage {
+        max-width: 92%;
+        max-height: 80vh;
+      }
+
+      .modalArrow {
+        width: 45px;
+        height: 45px;
+      }
+
+      .modalPrev {
+        left: 5px;
+      }
+
+      .modalNext {
+        right: 5px;
+      }
+
+      .modalClose {
+        top: 15px;
+        right: 15px;
+      }
+    }
   </style>
   <body>
     <header>
@@ -899,6 +1059,180 @@
         </p>
       </section>
     </main>
+    <!-- IMAGE MODAL -->
+    <div class="imageModal">
+      <button class="modalClose">&times;</button>
+
+      <button class="modalArrow modalPrev" aria-label="Previous image">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+      </button>
+
+      <img class="modalImage" src="" alt="" />
+
+      <button class="modalArrow modalNext" aria-label="Next image">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </button>
+    </div>
+
     <script src="arr.js"></script>
+    <script>
+      const imageModal = document.querySelector(".imageModal");
+      const modalImage = document.querySelector(".modalImage");
+      const modalClose = document.querySelector(".modalClose");
+      const modalPrev = document.querySelector(".modalPrev");
+      const modalNext = document.querySelector(".modalNext");
+
+      let currentIndex = 0;
+
+      // ყველა კატალოგის სურათი
+      function getImages() {
+        return Array.from(document.querySelectorAll(".catalogImg"));
+      }
+
+      // ==========================
+      // OPEN IMAGE
+      // ==========================
+
+      document
+        .querySelector(".catalog")
+        .addEventListener("click", function (e) {
+          const img = e.target.closest(".catalogImg");
+
+          // თუ სურათს არ დავაჭირეთ, არაფერი
+          if (!img) return;
+
+          const images = getImages();
+
+          currentIndex = images.indexOf(img);
+
+          modalImage.src = img.src;
+          modalImage.alt = img.alt;
+
+          imageModal.classList.add("active");
+
+          document.body.style.overflow = "hidden";
+        });
+
+      // ==========================
+      // SHOW IMAGE
+      // ==========================
+
+      function showImage(index) {
+        const images = getImages();
+
+        if (images.length === 0) return;
+
+        // ბოლო -> პირველი
+        if (index >= images.length) {
+          index = 0;
+        }
+
+        // პირველი -> ბოლო
+        if (index < 0) {
+          index = images.length - 1;
+        }
+
+        currentIndex = index;
+
+        modalImage.style.opacity = "0";
+
+        setTimeout(() => {
+          modalImage.src = images[currentIndex].src;
+          modalImage.alt = images[currentIndex].alt;
+
+          modalImage.style.opacity = "1";
+        }, 150);
+      }
+
+      // ==========================
+      // NEXT
+      // ==========================
+
+      modalNext.addEventListener("click", function (e) {
+        e.stopPropagation();
+
+        showImage(currentIndex + 1);
+      });
+
+      // ==========================
+      // PREVIOUS
+      // ==========================
+
+      modalPrev.addEventListener("click", function (e) {
+        e.stopPropagation();
+
+        showImage(currentIndex - 1);
+      });
+
+      // ==========================
+      // CLOSE
+      // ==========================
+
+      function closeModal() {
+        imageModal.classList.remove("active");
+
+        document.body.style.overflow = "";
+      }
+
+      modalClose.addEventListener("click", function (e) {
+        e.stopPropagation();
+
+        closeModal();
+      });
+
+      // ==========================
+      // CLICK OUTSIDE IMAGE
+      // ==========================
+
+      imageModal.addEventListener("click", function (e) {
+        if (e.target === imageModal) {
+          closeModal();
+        }
+      });
+
+      // ==========================
+      // KEYBOARD
+      // ==========================
+
+      document.addEventListener("keydown", function (e) {
+        if (!imageModal.classList.contains("active")) return;
+
+        if (e.key === "Escape") {
+          closeModal();
+        }
+
+        if (e.key === "ArrowRight") {
+          showImage(currentIndex + 1);
+        }
+
+        if (e.key === "ArrowLeft") {
+          showImage(currentIndex - 1);
+        }
+      });
+    </script>
   </body>
 </html>
