@@ -1,0 +1,1075 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --accent: #ff9475;
+  --text: #ffffff;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  isolation: isolate;
+}
+
+section {
+  position: relative;
+  min-height: 100vh;
+}
+
+.tittle-date-dcrp-btn {
+  width: min(900px, calc(100% - 40px));
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 24px;
+  text-align: center;
+}
+
+.tittle-date-dcrp-btn h2 {
+  max-width: 100%;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--text);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.tittle-date-dcrp-btn p {
+  color: var(--text);
+  font-family: "Cabin", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.selectTktBtn {
+  font-size: 1.25rem;
+  width: fit-content;
+  align-self: center;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  padding: 10px 20px;
+  border: 2px solid #ff9475;
+  color: #ff9475;
+  text-transform: uppercase;
+  text-decoration: underline;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.selectTktBtn:hover {
+  background-color: var(--accent);
+  color: #000;
+}
+
+.sec2 {
+  min-height: 150vh;
+  background-color: rgb(44, 42, 42);
+  color: var(--text);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.sec2Content {
+  width: min(900px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  height: 50%;
+}
+
+.sec2Content h3 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 100;
+  text-transform: capitalize;
+}
+
+.sec2Content p {
+  font-family: "Cabin", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.5;
+}
+
+.ticketInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.ticketInfo > div {
+  width: 50%;
+  margin: 10px 0;
+  border-right: 1px solid #ffffff;
+}
+
+.map {
+  height: 280px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.sec2 svg {
+  color: var(--text);
+}
+
+.bandImg2 {
+  position: absolute;
+  top: calc(100vh - 250px);
+  left: 50%;
+  z-index: 2;
+  width: min(60%, 900px);
+  height: 500px;
+  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(50%);
+  pointer-events: none;
+}
+
+.timeLocation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+         SELECT TICKET CONTAINER
+      ========================================================= */
+
+.selectTktContainer {
+  position: fixed;
+  z-index: 99999;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 95vw;
+  height: calc(100vh - 20px);
+
+  display: none;
+
+  color: #000;
+
+  font-family: "Inter", sans-serif;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+.selectTktContainer *,
+.selectTktContainer *::before,
+.selectTktContainer *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+         LEFT / ASIDE
+      ========================================================= */
+
+.selectTktAside {
+  width: 390px;
+  height: 100%;
+  flex: 0 0 390px;
+
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid #dedede;
+   min-height: 0;
+   background-color: #ffffff;
+}
+
+.selectTktAside-header {
+  padding: 28px 26px;
+  border-bottom: 1px solid #dedede;
+  flex-shrink: 0;
+}
+
+.bandNam {
+  margin: 0 0 10px;
+
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+
+.vntDate,
+.vntLocation {
+  margin: 4px 0;
+
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+}
+
+/* =========================================================
+         BASKET
+      ========================================================= */
+
+.basket {
+  flex: 1;
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+.emptyBskt,
+.nonEmptyBskt {
+  height: 100%;
+  padding: 26px;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 0;
+}
+
+.emptyBskt {
+  justify-content: space-between;
+}
+
+.emptyBskt > div:first-child {
+  margin-top: 10px;
+}
+
+.emptyBskt h2,
+.nonEmptyBskt > h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.emptyBskt p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1f1b1b;
+}
+
+/* =========================================================
+         TICKET LIST BUTTON
+      ========================================================= */
+
+.tktListBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+  margin: 10px 0;
+  color: #000;
+  font-size: 19px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.tktListBtn svg {
+  flex-shrink: 0;
+}
+
+.tktListBtn:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+         EMPTY BASKET TOTAL
+      ========================================================= */
+
+.bastkeTotal {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #dedede;
+  text-transform: capitalize;
+}
+
+.bastkeTotal > div {
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bastkeTotal p {
+  margin: 0;
+  font-size: 12px;
+  color: #211d1d;
+}
+
+.checkout {
+  width: 100%;
+  height: 52px;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.checkout:hover {
+  background: transparent;
+  border: 1px solid black;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
+
+/* =========================================================
+         NON EMPTY BASKET
+      ========================================================= */
+
+.nonEmptyBskt {
+  overflow: hidden;
+}
+
+.tktContainer {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tktCard {
+  padding: 10px;
+  height: 200px;
+  border: 1px solid #000000;
+}
+
+.sectionCont {
+  display: flex;
+}
+
+.sectionCont h5,
+.tktPriceCont h5 {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+}
+
+.sectionCont p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+}
+
+.tktPriceCont {
+  text-align: left;
+}
+
+.tktType {
+  margin: 0 0 5px;
+
+  font-size: 11px;
+  color: #555;
+}
+.tktprice {
+  margin: 0 0 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.serviceFee {
+  font-size: 10px;
+  color: #777;
+}
+
+.serviceFee span {
+  color: #000;
+}
+
+.removeTkt {
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  border: none;
+  background: transparent;
+  color: #777;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.removeTkt:hover {
+  color: #000;
+}
+
+/* =========================================================
+         NON EMPTY FOOTER
+      ========================================================= */
+
+.tktContainer > .tktList {
+  margin-top: 16px;
+  flex-shrink: 0;
+}
+
+.basketFooter {
+  margin-top: auto;
+  padding-top: 20px;
+
+  border-top: 1px solid #dedede;
+}
+
+.footerTkt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerTkt p {
+  margin: 0 0 8px;
+
+  font-size: 12px;
+  color: #555;
+}
+
+.footerServiceFee {
+  margin: 5px 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.footerServiceFee span {
+  color: #777;
+}
+
+.footerTotalPrice-fees {
+  margin: 15px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footerTotalPrice-fees h5 {
+  margin: 0;
+
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.footerTotalPrice-fees p {
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* =========================================================
+         RIGHT MAP
+      ========================================================= */
+
+.selectTktMap {
+  position: relative;
+
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+
+  height: 100%;
+
+  background: #f5f5f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+         CLOSE BUTTON
+      ========================================================= */
+
+.closeSelectTktContainer {
+  position: absolute;
+
+  top: 18px;
+  right: 20px;
+
+  width: 38px;
+  height: 38px;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #000;
+  border-radius: 50%;
+
+  background: #fff;
+  color: #000;
+
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.closeSelectTktContainer:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* =========================================================
+         STAGE MAP
+      ========================================================= */
+
+.stageMap {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border: none;
+
+  z-index: 1;
+
+  display: block;
+}
+
+/* =========================================================
+         STAGE
+      ========================================================= */
+
+.stage {
+  position: absolute;
+
+  left: 50%;
+  top: 52%;
+
+  transform: translate(-50%, -50%);
+
+  width: 200px;
+  height: 92px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #000;
+  color: #fff;
+
+  border-radius: 50% 50% 14px 14px;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  z-index: 5;
+}
+
+/* =========================================================
+         SECTIONS
+      ========================================================= */
+
+.hall-section {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+         SEATS
+      ========================================================= */
+
+.stageMap .seat {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  pointer-events: auto;
+  cursor: pointer;
+
+  z-index: 4;
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.stageMap .seat:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: brightness(1.15);
+  z-index: 20;
+}
+
+/* A */
+
+.stageMap .section-a .seat,
+.section-a .seat {
+  background: #2878ff;
+}
+
+/* B */
+
+.stageMap .section-b .seat,
+.section-b .seat {
+  background: #e63232;
+}
+
+/* C */
+
+.stageMap .section-c .seat,
+.section-c .seat {
+  background: #f5be1e;
+}
+
+/* SELECTED */
+
+.stageMap .seat.selected,
+.seat.selected {
+  background: #111 !important;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 30;
+}
+
+/* UNAVAILABLE */
+
+.stageMap .seat.unavailable,
+.seat.unavailable {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ========================================================= MAP LEGEND ========================================================= */
+.mapLegend {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  width: 250px;
+  max-width: calc(100% - 40px);
+  height: fit-content;
+  background: #fff;
+  border: 1px solid #ddd;
+  z-index: 30;
+  text-transform: capitalize;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+.closedMapLegend,
+.opendMapLegend {
+  padding: 15px;
+}
+.closedMapLegend {
+  cursor: pointer;
+}
+.closedMapLegend .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mapLegend svg {
+  scale: 1.4;
+}
+.closedMapLegend p,
+.opendMapLegend > p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.opendMapLegend {
+  border-top: 1px solid #ddd;
+}
+.seatTypesCont {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* =========================================================
+   LEGEND ITEMS
+========================================================= */
+
+.legendItems {
+  margin-top: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+}
+
+.legendColor {
+  width: 12px;
+  height: 12px;
+
+  flex: 0 0 12px;
+
+  border-radius: 50%;
+
+  display: block;
+}
+
+.legendName {
+  flex: 1;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+}
+
+.legendPrice {
+  font-size: 15px;
+  font-weight: 500;
+  color: #777;
+}
+
+/* =========================================================
+   OPEN STATE
+========================================================= */
+
+body.ticket-open .selectTktContainer {
+  display: flex;
+}
+
+body.ticket-open header,
+body.ticket-open .socIcons {
+  display: none;
+}
+
+/* =========================================================
+   TICKET LIST CONTAINER
+========================================================= */
+
+.tktListContainer {
+  width: 100%;
+  height: 100%;
+
+  display: none;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+.tktListContainer.active {
+  display: flex;
+}
+
+/* TITLE */
+
+.tktListContainer h2 {
+  margin: 0;
+  padding: 10px 0 15px;
+
+  flex-shrink: 0;
+
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* FREE TICKETS */
+
+.freeTkts {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tktsInList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tktsInList::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.tktsInList::-webkit-scrollbar-thumb {
+  background: #aaa;
+}
+
+.tktsInList::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+.tktsInList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* =========================================================
+   EACH TICKET
+========================================================= */
+
+.tktCard {
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  padding: 16px;
+  min-height: fit-content;
+  border: 1px solid #000;
+}
+.tktCard::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  top: 0.2%;
+  left: -2px;
+  bottom: 4px;
+}
+.tktCard.section-a::before {
+  background: #2878ff;
+}
+
+.tktCard.section-b::before {
+  background: #e63232;
+}
+
+.tktCard.section-c::before {
+  background: #f5be1e;
+}
+/* =========================================================
+   TICKET CONTENT
+========================================================= */
+
+.sectionCont {
+  display: flex;
+
+  gap: 4px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.sectionCont h5 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+}
+
+.sectionCont p {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #000;
+}
+
+/* PRICE */
+
+.tktPriceCont {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tktType {
+  margin: 0 0 4px;
+
+  font-size: 11px;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.tktprice {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #000;
+}
+
+.serviceFee {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 10px;
+  color: #777;
+}
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.backToBskt {
+  width: 100%;
+
+  min-height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 0 10px;
+
+  border: none;
+  border-bottom: 1px solid #000;
+
+  background: #fff;
+  color: #000;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.backToBskt:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.fillterList {
+  width: 100%;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #dedede;
+
+  text-transform: capitalize;
+}
+
+.fillterList > * {
+  cursor: pointer;
+}
+
+/* =========================================================
+   ADD TO BASKET
+========================================================= */
+
+.addToBskt {
+  width: 100%;
+
+  min-height: 48px;
+
+  flex-shrink: 0;
+
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+
+  border: 1px solid #000;
+
+  background: #fff;
+  color: #000;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.addToBskt:hover {
+  background: #000;
+  color: #fff;
+}

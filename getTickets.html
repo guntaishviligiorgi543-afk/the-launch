@@ -5,192 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="main.css" />
-    <style>
-      :root {
-        --accent: #ff9475;
-        --text: #ffffff;
-      }
-
-      body {
-        overflow-x: hidden;
-      }
-
-      main {
-        position: relative;
-        isolation: isolate;
-      }
-
-      section {
-        position: relative;
-        min-height: 100vh;
-        align-items: ce;
-      }
-
-      .tittle-date-dcrp-btn {
-        width: min(900px, calc(100% - 40px));
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        gap: 24px;
-        text-align: center;
-      }
-
-      .tittle-date-dcrp-btn h2 {
-        max-width: 100%;
-        font-size: clamp(2.2rem, 6vw, 4.5rem);
-        line-height: 1;
-        color: var(--text);
-        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-        font-weight: 300;
-        text-transform: uppercase;
-      }
-
-      .tittle-date-dcrp-btn p {
-        color: var(--text);
-        font-family: "Cabin", sans-serif;
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        line-height: 1.6;
-      }
-
-      .selectTktBtn {
-        font-size: 1.25rem;
-        width: fit-content;
-        align-self: center;
-        font-family:
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Oxygen,
-          Ubuntu,
-          Cantarell,
-          "Open Sans",
-          "Helvetica Neue",
-          sans-serif;
-        padding: 10px 20px;
-        border: 2px solid #ff9475;
-        color: #ff9475;
-        text-transform: uppercase;
-        text-decoration: underline;
-        cursor: pointer;
-        transition:
-          background-color 0.2s ease,
-          color 0.2s ease;
-      }
-
-      .selectTktBtn:hover {
-        background-color: var(--accent);
-        color: #000;
-      }
-
-      .sec2 {
-        min-height: 150vh;
-        background-color: rgb(44, 42, 42);
-        color: var(--text);
-        display: flex;
-        align-items: end;
-        justify-content: center;
-      }
-      .sec2Content {
-        width: min(900px, 100%);
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-        height: 50%;
-      }
-
-      .sec2Content h3 {
-        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        font-weight: 100;
-        text-transform: capitalize;
-      }
-
-      .sec2Content p {
-        font-family: "Cabin", sans-serif;
-        font-size: clamp(1rem, 2vw, 1.35rem);
-        line-height: 1.5;
-      }
-
-      .ticketInfo {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 24px;
-        border-top: 1px solid #ffffff;
-        border-bottom: 1px solid #ffffff;
-      }
-      .ticketInfo > div {
-        width: 50%;
-        margin: 10px 0;
-        border-right: 1px solid #ffffff;
-      }
-      .map {
-        height: 280px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-      }
-
-      .sec2 svg {
-        color: var(--text);
-      }
-
-      .bandImg2 {
-        position: absolute;
-        top: calc(100vh - 250px);
-        left: 50%;
-        z-index: 2;
-        width: min(60%, 900px);
-        height: 500px;
-        transform: translateX(-50%);
-        object-fit: cover;
-        object-position: center;
-        filter: brightness(50%);
-        pointer-events: none;
-      }
-
-      .timeLocation {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      @media (max-width: 640px) {
-        .tittle-date-dcrp-btn {
-          width: calc(100% - 24px);
-          padding: 140px 20px 50px;
-        }
-
-        .ticketInfo {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .map {
-          height: 230px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="getTicket.css" />
   </head>
+
   <body>
     <header>
       <nav>
         <a href="index.html"><span>home</span></a>
         <a href="shows.html"><span>shows</span></a>
-        <a href="venue.html"> <span>venue</span></a
-        ><a href="contact.html"> <span>contact</span></a>
+        <a href="venue.html"> <span>venue</span></a>
+        <a href="contact.html"> <span>contact</span></a>
       </nav>
+
       <a class="contact" href="#">
-        <span>500 TERRY FRANCOIS ST. SAN FRANCISCO, CA 94158 </span></a
-      >
+        <span>500 TERRY FRANCOIS ST. SAN FRANCISCO, CA 94158</span>
+      </a>
     </header>
+
     <main>
       <section>
         <div class="socIcons">
-          <a href="#"
-            ><svg
+          <a href="#">
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
@@ -203,8 +39,9 @@
               />
             </svg>
           </a>
-          <a href="#"
-            ><svg
+
+          <a href="#">
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
@@ -217,8 +54,9 @@
               />
             </svg>
           </a>
-          <a href="#"
-            ><svg
+
+          <a href="#">
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
@@ -228,13 +66,14 @@
               <path
                 fill="currentColor"
                 fill-rule="evenodd"
-                d="M7.465 1.066C8.638 1.012 9.012 1 12 1s3.362.013 4.534.066s1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12s-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.4 5.4 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066s-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.4 5.4 0 0 1-1.949-1.268a5.4 5.4 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12s.013-3.362.066-4.534s.24-1.972.511-2.672a5.4 5.4 0 0 1 1.27-1.948a5.4 5.4 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511m8.98 1.98c-1.16-.053-1.508-.064-4.445-.064s-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.4 3.4 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445s.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064s3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16.064-1.508.064-4.445s-.011-3.285-.064-4.445c-.049-1.073-.228-1.655-.379-2.043c-.2-.513-.437-.88-.822-1.265a3.4 3.4 0 0 0-1.265-.822c-.388-.151-.97-.33-2.043-.379m-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986M8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996m10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89"
+                d="M7.465 1.066C8.638 1.012 9.012 1 12 1s3.362.013 4.534.066s1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12s-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.4 5.4 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066s-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.4 5.4 0 0 1-1.949-1.268a5.4 5.4 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12s.013-3.362.066-4.534s.24-1.972.511-2.672a5.4 5.4 0 0 1 1.27-1.948a5.4 5.4 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511m8.98 1.98c-1.16-.053-1.508-.064-4.445-.064s-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.4 3.4 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445s.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064s3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16.064-1.508-.379-2.043c-.2-.513-.437-.88-.822-1.265a3.4 3.4 0 0 0-1.265-.822c-.388-.151-.97-.33-2.043-.379m-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986M8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996m10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89"
                 clip-rule="evenodd"
               />
             </svg>
           </a>
-          <a href="#"
-            ><svg
+
+          <a href="#">
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
@@ -281,17 +120,18 @@
               stroke-linejoin="round"
               stroke-width="2"
               d="
-          m2 6 4-4
-          M2 12 12 2
-          M2 18 18 2
-          M2 24 24 2
-          M8 24 24 8
-          M14 24 24 14
-          M20 24 24 20
-        "
+                m2 6 4-4
+                M2 12 12 2
+                M2 18 18 2
+                M2 24 24 2
+                M8 24 24 8
+                M14 24 24 14
+                M20 24 24 20
+              "
             />
           </svg>
         </a>
+
         <div class="tittle-date-dcrp-btn">
           <h2 class="bandNam">Band Name</h2>
           <p>Event Date</p>
@@ -299,8 +139,9 @@
           <button class="selectTktBtn">get tickets</button>
         </div>
       </section>
+
       <img class="bandImg2" src="" alt="" />
-      <!-- position absolute img on first ans second sections -->
+
       <section class="sec2">
         <div class="sec2Content">
           <div class="timeLocation">
@@ -308,23 +149,29 @@
             <p>time</p>
             <p>location</p>
           </div>
+
           <div class="tickets">
             <h3>tickets</h3>
+
             <div class="ticketInfo">
               <div>
                 <p>price</p>
                 <p class="premiumPrice"></p>
                 <p class="vipPrice"></p>
               </div>
+
               <button class="selectTktBtn">select tickets</button>
             </div>
           </div>
+
           <div class="map">map</div>
+
           <div class="shareEvent">
             <h3>share this event</h3>
+
             <div>
-              <a href="#"
-                ><svg
+              <a href="#">
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
                   height="1em"
@@ -337,8 +184,9 @@
                   />
                 </svg>
               </a>
-              <a href="#"
-                ><svg
+
+              <a href="#">
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
                   height="1em"
@@ -351,8 +199,9 @@
                   />
                 </svg>
               </a>
-              <a href="#"
-                ><svg
+
+              <a href="#">
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
                   height="1em"
@@ -362,7 +211,7 @@
                   <path
                     fill="currentColor"
                     fill-rule="evenodd"
-                    d="M7.465 1.066C8.638 1.012 9.012 1 12 1s3.362.013 4.534.066s1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12s-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.4 5.4 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066s-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.4 5.4 0 0 1-1.949-1.268a5.4 5.4 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12s.013-3.362.066-4.534s.24-1.972.511-2.672a5.4 5.4 0 0 1 1.27-1.948a5.4 5.4 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511m8.98 1.98c-1.16-.053-1.508-.064-4.445-.064s-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.4 3.4 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445s.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064s3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16.064-1.508.064-4.445s-.011-3.285-.064-4.445c-.049-1.073-.228-1.655-.379-2.043c-.2-.513-.437-.88-.822-1.265a3.4 3.4 0 0 0-1.265-.822c-.388-.151-.97-.33-2.043-.379m-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986M8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996m10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89"
+                    d="M7.465 1.066C8.638 1.012 9.012 1 12 1s3.362.013 4.534.066s1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12s-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.4 5.4 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066s-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.4 5.4 0 0 1-1.949-1.268a5.4 5.4 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12s.013-3.362.066-4.534s.24-1.972.511-2.672a5.4 5.4 0 0 1 1.27-1.948a5.4 5.4 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511m8.98 1.98c-1.16-.053-1.508-.064-4.445-.064s-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.4 3.4 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445s.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064s3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16-.011-1.508-.064-4.445s.011-3.285.064-4.445c.049-1.073.228-1.655.379-2.043c.2-.513.437-.88.822-1.265a3.4 3.4 0 0 1 1.265-.822c.388-.151.97-.33 2.043-.379m-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986M8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996m10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89"
                     clip-rule="evenodd"
                   />
                 </svg>
@@ -371,6 +220,7 @@
           </div>
         </div>
       </section>
+
       <section class="sec4" aria-labelledby="newsletter-title">
         <div class="newsletter">
           <h2 id="newsletter-title">Stay up to date</h2>
@@ -402,8 +252,632 @@
           secured by <u>Wix</u>
         </p>
       </section>
+
+      <!-- =========================================================
+           SELECT TICKET CONTAINER
+      ========================================================= -->
+
+      <div class="selectTktContainer">
+        <div class="selectTktAside">
+          <div class="selectTktAside-header">
+            <h2 class="bandNam">performer</h2>
+            <p class="vntDate">date & time</p>
+            <p class="vntLocation">location</p>
+          </div>
+
+          <div class="basket">
+            <div class="emptyBskt">
+              <div class="bsktTitle-p">
+                <h2>basket (0)</h2>
+                <p>When you’ve chosen your tickets, they will appear here.</p>
+              </div>
+
+              <button class="tktListBtn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.41em"
+                  height="1.25em"
+                  viewBox="0 0 576 512"
+                >
+                  <path d="M0 0h576v512H0z" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M128 160h320v192H128zm400 96c0 26.51 21.49 48 48 48v96c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-96c26.51 0 48-21.49 48-48s-21.49-48-48-48v-96c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48v96c-26.51 0-48 21.49-48 48m-48-104c0-13.255-10.745-24-24-24H120c-13.255 0-24 10.745-24 24v208c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24z"
+                  />
+                </svg>
+
+                <p>Choose from Ticket List</p>
+              </button>
+              <div class="tktListContainer">
+                <button class="backToBskt">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.25em"
+                    height="1.25em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m11 5l-7 7l7 7m-7-7h16"
+                    />
+                  </svg>
+                  <span>Back to Basket</span>
+                </button>
+                <h2>ticket list</h2>
+                <div class="fillterList">
+                  <div class="fillterByTktType">tkt</div>
+                  <div class="fillterByZone">zone</div>
+                </div>
+                <div class="freeTkts">avaliable ticktets ()</div>
+                <div class="tktsInList">
+                  <div class="tktCard">
+                    <div class="tktInfo">
+                      <div class="sectionCont">
+                        <h5>
+                          section
+                          <p class="section">section from array</p>
+                        </h5>
+
+                        <h5>
+                          row
+                          <p class="row">row from array</p>
+                        </h5>
+
+                        <h5>
+                          seat
+                          <p class="seat">seat from array</p>
+                        </h5>
+                      </div>
+
+                      <div class="tktPriceCont">
+                        <p class="tktType">
+                          ticket type for example reugular or exspensive
+                        </p>
+
+                        <p class="tktprice">price</p>
+
+                        <h5 class="serviceFee">
+                          service fee rom array
+                          <span>ticket service fee</span>
+                        </h5>
+                      </div>
+                    </div>
+
+                    <button class="addToBskt">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.25em"
+                        height="1.25em"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-width="2"
+                          d="M12 20v-8m0 0V4m0 8h8m-8 0H4"
+                        />
+                      </svg>
+
+                      <span>add to basket</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="bastkeTotal">
+                <div>
+                  <p>total</p>
+                  <p>(total price 0)</p>
+                </div>
+
+                <button class="checkout">
+                  <span>checkout</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="nonEmptyBskt">
+              <h2>basket ()</h2>
+
+              <div class="tktContainer">
+                <div class="tktCard">
+                  <div class="tktInfo">
+                    <div class="sectionCont">
+                      <h5>
+                        section
+                        <p class="section">section from array</p>
+                      </h5>
+
+                      <h5>
+                        row
+                        <p class="row">row from array</p>
+                      </h5>
+
+                      <h5>
+                        seat
+                        <p class="seat">seat from array</p>
+                      </h5>
+                    </div>
+
+                    <div class="tktPriceCont">
+                      <p class="tktType">
+                        ticket type for example reugular or exspensive
+                      </p>
+
+                      <p class="tktprice">price</p>
+
+                      <h5 class="serviceFee">
+                        service fee rom array
+                        <span>ticket service fee</span>
+                      </h5>
+                    </div>
+                  </div>
+
+                  <button class="removeTkt">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.25em"
+                      height="1.25em"
+                      viewBox="0 0 1024 1024"
+                    >
+                      <path d="M0 0h1024v1024H0z" fill="none" />
+                      <path
+                        fill="currentColor"
+                        fill-opacity=".15"
+                        d="M292.7 840h438.6l24.2-512h-487z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32m-504-72h304v72H360zm371.3 656H292.7l-24.2-512h487z"
+                      />
+                    </svg>
+
+                    <p>remove from basket</p>
+                  </button>
+                </div>
+
+                <button class="tktList">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.41em"
+                    height="1.25em"
+                    viewBox="0 0 576 512"
+                  >
+                    <path d="M0 0h576v512H0z" fill="none" />
+                    <path
+                      fill="currentColor"
+                      d="M128 160h320v192H128zm400 96c0 26.51 21.49 48 48 48v96c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-96c26.51 0 48-48 48-48s-21.49-48-48-48v-96c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48v96c-26.51 0-48 48-48 48m-48-104c0-13.255-10.745-24-24-24H120c-13.255 0-24 10.745-24 24v208c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24z"
+                    />
+                  </svg>
+
+                  <p>Choose from Ticket List</p>
+                </button>
+                <div class="tktListContainer">
+                  <button class="backToBskt">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.25em"
+                      height="1.25em"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m11 5l-7 7l7 7m-7-7h16"
+                      />
+                    </svg>
+                    <span>Back to Basket</span>
+                  </button>
+                  <h2>ticket list</h2>
+                  <div class="fillterList">
+                    <div class="fillterByTktType">tkt</div>
+                    <div class="fillterByZone">zone</div>
+                  </div>
+                  <div class="freeTkts">avaliable ticktets ()</div>
+                  <div class="tktsInList">
+                    <div class="tktCard">
+                      <div class="tktInfo">
+                        <div class="sectionCont">
+                          <h5>
+                            section
+                            <p class="section">section from array</p>
+                          </h5>
+
+                          <h5>
+                            row
+                            <p class="row">row from array</p>
+                          </h5>
+
+                          <h5>
+                            seat
+                            <p class="seat">seat from array</p>
+                          </h5>
+                        </div>
+
+                        <div class="tktPriceCont">
+                          <p class="tktType">
+                            ticket type for example reugular or exspensive
+                          </p>
+
+                          <p class="tktprice">price</p>
+
+                          <h5 class="serviceFee">
+                            service fee rom array
+                            <span>ticket service fee</span>
+                          </h5>
+                        </div>
+                      </div>
+
+                      <button class="addToBskt">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1.25em"
+                          height="1.25em"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M0 0h24v24H0z" fill="none" />
+                          <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-width="2"
+                            d="M12 20v-8m0 0V4m0 8h8m-8 0H4"
+                          />
+                        </svg>
+
+                        <span>add to basket</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="basketFooter">
+                  <div class="footerTkt">
+                    <p class="tktQnt">quantity</p>
+                    <p class="totalPrice-noFees">Total price</p>
+                  </div>
+
+                  <h5 class="footerServiceFee">
+                    <span>service fee</span>
+                    <p class="serviceFee">service fee from array</p>
+                  </h5>
+
+                  <div class="footerTotalPrice-fees">
+                    <h5>toal</h5>
+                    <p>total price from array</p>
+                  </div>
+
+                  <button class="checkout">
+                    <span>checkout</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="selectTktMap">
+          <button class="closeSelectTktContainer">X</button>
+
+          <div class="stageMap"></div>
+
+          <div class="mapLegend">
+            <div class="closedMapLegend">
+              <div class="header">
+                <span>shows prices</span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.25em"
+                  height="1.25em"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 20V4m-7 7l7-7l7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div class="opendMapLegend">
+              <div class="legendTitle">Ticket prices</div>
+
+              <div class="legendItems" id="legendItems"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
+
     <script src="arr.js"></script>
+    <script>
+      //tkt list//
+
+      const tktListBtn = document.querySelector(".tktListBtn");
+      const tktListContainer = document.querySelector(
+        ".emptyBskt .tktListContainer",
+      );
+      const backToBskt = document.querySelector(".emptyBskt .backToBskt");
+      const basket = document.querySelector(".basket");
+
+      tktListBtn.addEventListener("click", () => {
+        tktListContainer.style.display = "flex";
+        tktListBtn.style.display = "none";
+      });
+
+      backToBskt.addEventListener("click", () => {
+        tktListContainer.style.display = "none";
+        tktListBtn.style.display = "flex";
+      });
+    </script>
+    <script>
+      const hallMap = {
+        sections: [
+          {
+            id: "A",
+            name: "A Section",
+            ticketType: "cheap",
+            rows: 5,
+            seatsPerRow: 30,
+          },
+          {
+            id: "B",
+            name: "B Section",
+            ticketType: "medium",
+            rows: 5,
+            seatsPerRow: 30,
+          },
+          {
+            id: "C",
+            name: "C Section",
+            ticketType: "vip",
+            rows: 5,
+            seatsPerRow: 30,
+          },
+        ],
+      };
+    </script>
+
     <script src="getTickets.js"></script>
+
+    <script>
+      const selectTktContainer = document.querySelector(".selectTktContainer");
+
+      const selectTktBtns = document.querySelectorAll(".selectTktBtn");
+
+      const closeSelectTkt = document.querySelector(".closeSelectTktContainer");
+
+      selectTktBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.body.classList.add("ticket-open");
+
+          setTimeout(() => {
+            renderHallMap();
+          }, 50);
+        });
+      });
+
+      closeSelectTkt?.addEventListener("click", () => {
+        document.body.classList.remove("ticket-open");
+      });
+    </script>
+
+    <script>
+      const stageMap = document.querySelector(".stageMap");
+
+      function renderHallMap() {
+        if (!stageMap) return;
+
+        stageMap.innerHTML = "";
+
+        const mapWidth = stageMap.clientWidth;
+        const mapHeight = stageMap.clientHeight;
+
+        if (mapWidth === 0 || mapHeight === 0) {
+          console.log("stageMap has no size");
+          return;
+        }
+
+        /*
+          რუკის ცენტრი.
+          ოდნავ ქვემოთ არის გადაწეული, რომ
+          ზედა rows-ებს საკმარისი სივრცე ჰქონდეთ.
+        */
+
+        const centerX = mapWidth / 2;
+        const centerY = mapHeight * 0.58;
+
+        /*
+          რადიუსს ვზღუდავთ როგორც სიგანის,
+          ისე სიმაღლის მიხედვით.
+        */
+
+        const maxRadius = Math.min(mapWidth, mapHeight) * 0.32;
+
+        /* =========================
+           STAGE
+        ========================= */
+
+        const stage = document.createElement("div");
+
+        stage.className = "stage";
+        stage.textContent = "STAGE";
+
+        stageMap.appendChild(stage);
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        hallMap.sections.forEach((section) => {
+          const sectionDiv = document.createElement("div");
+
+          sectionDiv.className = `hall-section section-${section.id.toLowerCase()}`;
+
+          /*
+            C — სცენასთან ყველაზე ახლოს
+            B — შუაში
+            A — ყველაზე გარეთ
+          */
+
+          const radiusBase = {
+            C: maxRadius * 0.54,
+            B: maxRadius * 0.95,
+            A: maxRadius * 1.38,
+          };
+
+          /*
+            თითოეულ row-ს შორის
+            უფრო დიდი დაშორება.
+          */
+
+          const rowGap = maxRadius * 0.085;
+
+          /* =========================
+             ROWS
+          ========================= */
+
+          for (let row = 1; row <= section.rows; row++) {
+            const radius = radiusBase[section.id] + (row - 1) * rowGap;
+
+            /* =========================
+               SEATS
+            ========================= */
+
+            const totalSeats = section.seatsPerRow;
+
+            /*
+              ფართო ნახევარწრე.
+              მარცხნიდან მარჯვნივ.
+            */
+
+            const startAngle = -170;
+            const endAngle = -10;
+
+            for (let seat = 1; seat <= totalSeats; seat++) {
+              const angle =
+                startAngle +
+                ((seat - 1) / (totalSeats - 1)) * (endAngle - startAngle);
+
+              const radians = (angle * Math.PI) / 180;
+
+              const x = centerX + Math.cos(radians) * radius;
+
+              const y = centerY + Math.sin(radians) * radius;
+
+              const seatDiv = document.createElement("span");
+
+              seatDiv.className = "seat";
+
+              seatDiv.dataset.section = section.id;
+              seatDiv.dataset.row = row;
+              seatDiv.dataset.seat = seat;
+
+              seatDiv.style.left = `${x}px`;
+              seatDiv.style.top = `${y}px`;
+
+              seatDiv.title = `${section.name} • Row ${row} • Seat ${seat}`;
+
+              sectionDiv.appendChild(seatDiv);
+            }
+          }
+
+          stageMap.appendChild(sectionDiv);
+        });
+      }
+
+      /*
+        ფანჯრის ზომის შეცვლისას
+        რუკა თავიდან დაიხატოს.
+      */
+
+      window.addEventListener("resize", () => {
+        if (document.body.classList.contains("ticket-open")) {
+          renderHallMap();
+        }
+      });
+    </script>
+    <script>
+      const closedMapLegend = document.querySelector(".closedMapLegend");
+      const opendMapLegend = document.querySelector(".opendMapLegend");
+      opendMapLegend.style.display = "none";
+      closedMapLegend.addEventListener("click", () => {
+        closedMapLegend.style.display = "none";
+        opendMapLegend.style.display = "block";
+      });
+      opendMapLegend.addEventListener("click", () => {
+        opendMapLegend.style.display = "none";
+        closedMapLegend.style.display = "block";
+      });
+    </script>
+
+    <script>
+      const ticketTypes = [
+        {
+          type: "cheap",
+          color: "#2878ff",
+        },
+        {
+          type: "medium",
+          color: "#e63232",
+        },
+        {
+          type: "vip",
+          color: "#f5be1e",
+        },
+      ];
+
+      const legendItems = document.querySelector("#legendItems");
+
+      if (selectedBand && legendItems) {
+        legendItems.innerHTML = "";
+
+        ticketTypes.forEach((item) => {
+          const ticket = selectedBand.tickets[item.type];
+
+          if (!ticket) return;
+
+          const legendItem = document.createElement("div");
+
+          legendItem.className = "legendItem";
+
+          legendItem.innerHTML = `
+      <span
+        class="legendColor"
+        style="background:${item.color}"
+      ></span>
+
+      <span class="legendName">
+        ${ticket.name}
+      </span>
+
+      <span class="legendPrice">
+        ${ticket.price}${ticket.currency}
+      </span>
+    `;
+
+          legendItems.appendChild(legendItem);
+        });
+      }
+    </script>
+    <script>
+      
+    </script>
   </body>
 </html>

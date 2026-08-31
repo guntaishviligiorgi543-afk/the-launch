@@ -80,3 +80,213 @@ if (!band) {
     </iframe>
   `;
 }
+
+const selectedBand = bands.find((band) => band.id === bandId);
+
+if (!selectedBand) {
+  console.log("Band not found");
+} else {
+  const container = document.querySelector(".selectTktContainer");
+
+  // =========================
+  // BAND INFO
+  // =========================
+
+  container.querySelector(".bandNam").textContent = selectedBand.bandName;
+
+  container.querySelector(".vntDate").textContent =
+    `${selectedBand.event.date} • ${selectedBand.event.time}`;
+
+  container.querySelector(".vntLocation").textContent =
+    `${selectedBand.location.venue}, ${selectedBand.location.city}`;
+
+  // =========================
+  // HERO INFO
+  // =========================
+
+  const bandName = document.querySelector(".tittle-date-dcrp-btn .bandNam");
+
+  const heroDate = document.querySelector(
+    ".tittle-date-dcrp-btn p:nth-of-type(1)",
+  );
+
+  const heroDescription = document.querySelector(
+    ".tittle-date-dcrp-btn p:nth-of-type(2)",
+  );
+
+  const bandImg = document.querySelector(".bandImg2");
+
+  if (bandName) {
+    bandName.textContent = selectedBand.bandName;
+  }
+
+  if (heroDate) {
+    heroDate.textContent = `${selectedBand.event.date} • ${selectedBand.event.time}`;
+  }
+
+  if (heroDescription) {
+    heroDescription.textContent = selectedBand.bandDescription.trim();
+  }
+
+  if (bandImg) {
+    bandImg.src = selectedBand.bandImg2;
+    bandImg.alt = selectedBand.bandName;
+  }
+
+  // =========================
+  // TIME & LOCATION
+  // =========================
+
+  const timeLocation = document.querySelector(".timeLocation");
+
+  if (timeLocation) {
+    const paragraphs = timeLocation.querySelectorAll("p");
+
+    paragraphs[0].textContent = `${selectedBand.event.time} (doors ${selectedBand.event.doorsOpen})`;
+
+    paragraphs[1].textContent = `${selectedBand.location.venue}, ${selectedBand.location.city}`;
+  }
+
+  // =========================
+  // TICKET PRICES
+  // =========================
+
+  const tickets = selectedBand.tickets;
+
+  const premiumPrice = document.querySelector(".premiumPrice");
+  const vipPrice = document.querySelector(".vipPrice");
+
+  if (premiumPrice && tickets.medium) {
+    premiumPrice.textContent = `${tickets.medium.name}: ${tickets.medium.price}${tickets.medium.currency}`;
+  }
+
+  if (vipPrice && tickets.vip) {
+    vipPrice.textContent = `${tickets.vip.name}: ${tickets.vip.price}${tickets.vip.currency}`;
+  }
+}
+function renderTicketList() {
+  const list = document.querySelector(".emptyBskt .tktsInList");
+  const freeTkts = document.querySelector(".emptyBskt .freeTkts");
+
+  if (!list || !selectedBand) return;
+
+  list.innerHTML = "";
+
+  let availableTickets = [];
+
+  hallMap.sections.forEach((section) => {
+    const ticket = selectedBand.tickets[section.ticketType];
+
+    if (!ticket) return;
+
+    for (let row = 1; row <= section.rows; row++) {
+      for (let seat = 1; seat <= section.seatsPerRow; seat++) {
+        availableTickets.push({
+          section: section.id,
+          row: row,
+          seat: seat,
+          type: ticket.name,
+          price: ticket.price,
+          currency: ticket.currency,
+          serviceFee: ticket.serviceFee || 0,
+        });
+      }
+    }
+  });
+
+  freeTkts.textContent = `available tickets (${availableTickets.length})`;
+
+  availableTickets.forEach((ticket) => {
+    const card = document.createElement("div");
+
+    card.className = `tktCard section-${ticket.section.toLowerCase()}`;
+    card.innerHTML = `
+      <div class="tktInfo">
+
+        <div class="sectionCont">
+
+          <h5>
+            section
+            <p class="section">${ticket.section}</p>
+          </h5>
+
+          <h5>
+            row
+            <p class="row">${ticket.row}</p>
+          </h5>
+
+          <h5>
+            seat
+            <p class="seat">${ticket.seat}</p>
+          </h5>
+
+        </div>
+
+        <div class="tktPriceCont">
+
+          <p class="tktType">
+            ${ticket.type}
+          </p>
+
+          <p class="tktprice">
+            ${ticket.price}${ticket.currency}
+          </p>
+
+          <h5 class="serviceFee">
+            service fee
+            <span>
+              ${ticket.serviceFee}${ticket.currency}
+            </span>
+          </h5>
+
+        </div>
+
+      </div>
+
+      <button class="addToBskt">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.25em"
+          height="1.25em"
+          viewBox="0 0 24 24"
+        >
+          <path d="M0 0h24v24H0z" fill="none"/>
+
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+            d="M12 20v-8m0 0V4m0 8h8m-8 0H4"
+          />
+        </svg>
+
+        <span>add to basket</span>
+
+      </button>
+    `;
+
+    list.appendChild(card);
+  });
+}
+
+renderTicketList();
+
+
+const bsktTitleP = document.querySelector(".bsktTitle-p");
+
+if (tktListContainer && bsktTitleP) {
+  const observer = new MutationObserver(() => {
+    if (getComputedStyle(tktListContainer).display !== "none") {
+      bsktTitleP.style.display = "none";
+    } else {
+      bsktTitleP.style.display = "";
+    }
+  });
+
+  observer.observe(tktListContainer, {
+    attributes: true,
+    attributeFilter: ["style", "class"],
+  });
+}

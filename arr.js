@@ -37,7 +37,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 150,
         currency: "₾",
       },
@@ -108,7 +108,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 180,
         currency: "₾",
       },
@@ -178,7 +178,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 140,
         currency: "₾",
       },
@@ -245,7 +245,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 180,
         currency: "₾",
       },
@@ -311,7 +311,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 160,
         currency: "₾",
       },
@@ -377,7 +377,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 170,
         currency: "₾",
       },
@@ -443,7 +443,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 190,
         currency: "₾",
       },
@@ -510,7 +510,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 150,
         currency: "₾",
       },
@@ -575,7 +575,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 175,
         currency: "₾",
       },
@@ -641,7 +641,7 @@ const bands = [
       },
 
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 200,
         currency: "₾",
       },
@@ -693,7 +693,7 @@ const bands = [
         currency: "₾",
       },
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 150,
         currency: "₾",
       },
@@ -741,7 +741,7 @@ const bands = [
         currency: "₾",
       },
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 150,
         currency: "₾",
       },
@@ -789,7 +789,7 @@ const bands = [
         currency: "₾",
       },
       medium: {
-        name: "Premium",
+        name: "medium",
         price: 150,
         currency: "₾",
       },
@@ -846,7 +846,7 @@ const catalog = [
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIxFFSoAwz6-Jbf-FCDCdeYMTiUBI67e9hbkugfp_N-g&s=10",
   },
 ];
- const catalogContainer = document.querySelector(".catalog");
+const catalogContainer = document.querySelector(".catalog");
 
 catalog.forEach((item, index) => {
   const img = catalogContainer.querySelector(`.img${index + 1} img`);
