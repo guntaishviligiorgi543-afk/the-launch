@@ -310,8 +310,19 @@
                 </button>
                 <h2>ticket list</h2>
                 <div class="fillterList">
-                  <div class="fillterByTktType">tkt</div>
-                  <div class="fillterByZone">zone</div>
+                  <select class="fillterByTktType">
+                    <option value="">Ticket Type</option>
+                    <option value="standard">Standard</option>
+                    <option value="medium">Medium</option>
+                    <option value="vip">VIP</option>
+                  </select>
+
+                  <select class="fillterByZone">
+                    <option value="">Zone</option>
+                    <option value="zone-a">Zone A</option>
+                    <option value="zone-b">Zone B</option>
+                    <option value="zone-c">Zone C</option>
+                  </select>
                 </div>
                 <div class="freeTkts">avaliable ticktets ()</div>
                 <div class="tktsInList">
@@ -876,8 +887,6 @@
         });
       }
     </script>
-    <script>
-      
-    </script>
+    <script></script>
   </body>
 </html>

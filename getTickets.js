@@ -273,7 +273,6 @@ function renderTicketList() {
 
 renderTicketList();
 
-
 const bsktTitleP = document.querySelector(".bsktTitle-p");
 
 if (tktListContainer && bsktTitleP) {
@@ -289,4 +288,125 @@ if (tktListContainer && bsktTitleP) {
     attributes: true,
     attributeFilter: ["style", "class"],
   });
+}
+
+// =========================
+// TICKET FILTERING
+// =========================
+
+const ticketTypeFilter = document.querySelector(".fillterByTktType");
+const zoneFilter = document.querySelector(".fillterByZone");
+
+function filterTickets() {
+  const selectedType = ticketTypeFilter.value;
+  const selectedZone = zoneFilter.value;
+
+  // Get all ticket cards
+  const ticketCards = document.querySelectorAll(".emptyBskt .tktCard");
+
+  ticketCards.forEach((card) => {
+    const tktType = card.querySelector(".tktType").textContent.toLowerCase();
+    const section = card.querySelector(".section").textContent.toLowerCase();
+
+    // Map zones to sections
+    const zoneToSection = {
+      "zone-a": "a",
+      "zone-b": "b",
+      "zone-c": "c",
+    };
+
+    const cardZone = zoneToSection[selectedZone] || "";
+
+    // Check if card matches filters
+    const typeMatch =
+      !selectedType || tktType.includes(selectedType.toLowerCase());
+    const zoneMatch = !selectedZone || section === cardZone;
+
+    // Show or hide card
+    if (typeMatch && zoneMatch) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  // Update available tickets count
+  const visibleCards = document.querySelectorAll(
+    ".emptyBskt .tktCard:not([style*='display: none'])",
+  );
+  const freeTkts = document.querySelector(".emptyBskt .freeTkts");
+  if (freeTkts) {
+    freeTkts.textContent = `available tickets (${visibleCards.length})`;
+  }
+
+  // =========================
+  // UPDATE MAP SECTIONS OPACITY
+  // =========================
+
+  // Map ticket types to sections
+  const typeToSection = {
+    cheap: "a",
+    medium: "b",
+    vip: "c",
+  };
+
+  // Map zones to sections
+  const zoneToSection = {
+    "zone-a": "a",
+    "zone-b": "b",
+    "zone-c": "c",
+  };
+
+  // Get the matching section based on filters
+  let matchingSections = [];
+
+  if (selectedType) {
+    const matchingType = typeToSection[selectedType];
+    if (matchingType) matchingSections.push(matchingType);
+  }
+
+  if (selectedZone) {
+    const matchingZone = zoneToSection[selectedZone];
+    if (matchingZone) {
+      if (!matchingSections.includes(matchingZone)) {
+        matchingSections.push(matchingZone);
+      }
+    }
+  }
+
+  // If both filters are applied, only show sections that match BOTH
+  if (selectedType && selectedZone) {
+    const typeSection = typeToSection[selectedType];
+    const zoneSection = zoneToSection[selectedZone];
+    matchingSections = typeSection === zoneSection ? [typeSection] : [];
+  }
+
+  // Apply opacity to all sections in the map
+  const allSections = document.querySelectorAll(".stageMap .hall-section");
+  allSections.forEach((sectionEl) => {
+    const sectionClass = sectionEl.className.match(/section-([a-c])/);
+    if (sectionClass) {
+      const sectionId = sectionClass[1];
+
+      // If no filter is applied, show all sections normally
+      if (!selectedType && !selectedZone) {
+        sectionEl.style.opacity = "1";
+      } else if (matchingSections.includes(sectionId)) {
+        // If this section matches the filter, show it fully
+        sectionEl.style.opacity = "1";
+      } else {
+        // Otherwise, dim it
+        sectionEl.style.opacity = "0.3";
+      }
+    }
+  });
+}
+
+// Add event listeners to filter dropdowns
+if (ticketTypeFilter) {
+  ticketTypeFilter.addEventListener("change", filterTickets);
+}
+
+if (zoneFilter) {
+  zoneFilter.addEventListener("change", filterTickets);
 }
