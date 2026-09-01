@@ -345,6 +345,7 @@ function filterTickets() {
 
   // Map ticket types to sections
   const typeToSection = {
+    standard: "a",
     cheap: "a",
     medium: "b",
     vip: "c",
