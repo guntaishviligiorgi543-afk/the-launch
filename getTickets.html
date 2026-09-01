@@ -318,10 +318,10 @@
                   </select>
 
                   <select class="fillterByZone">
-                    <option value="">Zone</option>
-                    <option value="zone-a">Zone A</option>
-                    <option value="zone-b">Zone B</option>
-                    <option value="zone-c">Zone C</option>
+                    <option value=""><span>Zone</span></option>
+                    <option value="zone-a"><span>Zone A</span></option>
+                    <option value="zone-b"><span>Zone B</span></option>
+                    <option value="zone-c"><span>Zone C</span></option>
                   </select>
                 </div>
                 <div class="freeTkts">avaliable ticktets ()</div>
@@ -613,6 +613,17 @@
             </div>
           </div>
         </div>
+
+        <!-- CONFIRM DIALOG -->
+        <div class="confirmDialog" id="confirmDialog" style="display: none;">
+          <div class="confirmDialogContent">
+            <p>Add to basket?</p>
+            <div class="confirmDialogActions">
+              <button class="confirmYes">Yes</button>
+              <button class="confirmNo">No</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -680,6 +691,7 @@
 
           setTimeout(() => {
             renderHallMap();
+            attachSeatClickHandlers();
           }, 50);
         });
       });
@@ -821,6 +833,7 @@
       window.addEventListener("resize", () => {
         if (document.body.classList.contains("ticket-open")) {
           renderHallMap();
+          attachSeatClickHandlers();
         }
       });
     </script>
