@@ -268,7 +268,7 @@
           <div class="basket">
             <div class="emptyBskt">
               <div class="bsktTitle-p">
-                <h2>basket (0)</h2>
+                <h2 class="quantityOfTKts">basket (0)</h2>
                 <p>When you’ve chosen your tickets, they will appear here.</p>
               </div>
 
@@ -394,66 +394,12 @@
             </div>
 
             <div class="nonEmptyBskt">
-              <h2>basket ()</h2>
+              <h2 class="quantityOfTKts">basket (0)</h2>
 
               <div class="tktContainer">
-                <div class="tktCard">
-                  <div class="tktInfo">
-                    <div class="sectionCont">
-                      <h5>
-                        section
-                        <p class="section">section from array</p>
-                      </h5>
+                <div class="basketTicketsList"></div>
 
-                      <h5>
-                        row
-                        <p class="row">row from array</p>
-                      </h5>
-
-                      <h5>
-                        seat
-                        <p class="seat">seat from array</p>
-                      </h5>
-                    </div>
-
-                    <div class="tktPriceCont">
-                      <p class="tktType">
-                        ticket type for example reugular or exspensive
-                      </p>
-
-                      <p class="tktprice">price</p>
-
-                      <h5 class="serviceFee">
-                        service fee rom array
-                        <span>ticket service fee</span>
-                      </h5>
-                    </div>
-                  </div>
-
-                  <button class="removeTkt">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1.25em"
-                      height="1.25em"
-                      viewBox="0 0 1024 1024"
-                    >
-                      <path d="M0 0h1024v1024H0z" fill="none" />
-                      <path
-                        fill="currentColor"
-                        fill-opacity=".15"
-                        d="M292.7 840h438.6l24.2-512h-487z"
-                      />
-                      <path
-                        fill="currentColor"
-                        d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32m-504-72h304v72H360zm371.3 656H292.7l-24.2-512h487z"
-                      />
-                    </svg>
-
-                    <p>remove from basket</p>
-                  </button>
-                </div>
-
-                <button class="tktList">
+                <button class="tktListBtn">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="1.41em"
@@ -491,9 +437,21 @@
                   </button>
                   <h2>ticket list</h2>
                   <div class="fillterList">
-                    <div class="fillterByTktType">tkt</div>
-                    <div class="fillterByZone">zone</div>
+                    <select class="fillterByTktType">
+                      <option value="">Ticket Type</option>
+                      <option value="standard">Standard</option>
+                      <option value="medium">Medium</option>
+                      <option value="vip">VIP</option>
+                    </select>
+
+                    <select class="fillterByZone">
+                      <option value=""><span>Zone</span></option>
+                      <option value="zone-a"><span>Zone A</span></option>
+                      <option value="zone-b"><span>Zone B</span></option>
+                      <option value="zone-c"><span>Zone C</span></option>
+                    </select>
                   </div>
+
                   <div class="freeTkts">avaliable ticktets ()</div>
                   <div class="tktsInList">
                     <div class="tktCard">
@@ -580,6 +538,11 @@
         <div class="selectTktMap">
           <button class="closeSelectTktContainer">X</button>
 
+          <div class="selectionCountdown" aria-live="polite" style="display: none">
+            <span class="selectionCountdownLabel">Reservation</span>
+            <span class="selectionCountdownValue">06:00</span>
+          </div>
+
           <div class="stageMap"></div>
 
           <div class="mapLegend">
@@ -615,9 +578,17 @@
         </div>
 
         <!-- CONFIRM DIALOG -->
-        <div class="confirmDialog" id="confirmDialog" style="display: none;">
+        <div class="confirmDialog" id="confirmDialog" style="display: none">
           <div class="confirmDialogContent">
             <p>Add to basket?</p>
+
+            <div class="confirmSeatInfo">
+              <p>Section: <span class="confirmSection"></span></p>
+              <p>Row: <span class="confirmRow"></span></p>
+              <p>Seat: <span class="confirmSeat"></span></p>
+              <p>Price: <span class="confirmPrice"></span></p>
+            </div>
+
             <div class="confirmDialogActions">
               <button class="confirmYes">Yes</button>
               <button class="confirmNo">No</button>
@@ -628,26 +599,6 @@
     </main>
 
     <script src="arr.js"></script>
-    <script>
-      //tkt list//
-
-      const tktListBtn = document.querySelector(".tktListBtn");
-      const tktListContainer = document.querySelector(
-        ".emptyBskt .tktListContainer",
-      );
-      const backToBskt = document.querySelector(".emptyBskt .backToBskt");
-      const basket = document.querySelector(".basket");
-
-      tktListBtn.addEventListener("click", () => {
-        tktListContainer.style.display = "flex";
-        tktListBtn.style.display = "none";
-      });
-
-      backToBskt.addEventListener("click", () => {
-        tktListContainer.style.display = "none";
-        tktListBtn.style.display = "flex";
-      });
-    </script>
     <script>
       const hallMap = {
         sections: [
@@ -685,6 +636,159 @@
 
       const closeSelectTkt = document.querySelector(".closeSelectTktContainer");
 
+      const RESERVATION_DURATION_SECONDS = 10 * 60;
+      const RESERVATION_EXPIRY_KEY = "launchReservationExpiry";
+      const BASKET_STORAGE_KEY = "launchBasketTickets";
+
+      let selectionCountdownId = null;
+      let selectionCountdownSeconds = RESERVATION_DURATION_SECONDS;
+
+      function formatSelectionCountdown(totalSeconds) {
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+      }
+
+      function updateSelectionCountdownDisplay() {
+        const countdownValue = document.querySelector(".selectionCountdownValue");
+        const countdownTimer = document.querySelector(".selectionCountdown");
+
+        if (!countdownValue || !countdownTimer) return;
+
+        countdownValue.textContent = formatSelectionCountdown(
+          selectionCountdownSeconds,
+        );
+        countdownTimer.classList.toggle("warning", selectionCountdownSeconds <= 60);
+      }
+
+      function clearSelectionCountdown() {
+        if (selectionCountdownId) {
+          clearInterval(selectionCountdownId);
+          selectionCountdownId = null;
+        }
+      }
+
+      function clearStoredSelectionState() {
+        localStorage.removeItem(RESERVATION_EXPIRY_KEY);
+        localStorage.removeItem(BASKET_STORAGE_KEY);
+      }
+
+      function persistBasketState() {
+        localStorage.setItem(BASKET_STORAGE_KEY, JSON.stringify(basketTickets));
+      }
+
+      function persistSelectionExpiry() {
+        const expiryTimestamp = Date.now() + selectionCountdownSeconds * 1000;
+        localStorage.setItem(RESERVATION_EXPIRY_KEY, String(expiryTimestamp));
+      }
+
+      function restoreSelectionState() {
+        const savedBasket = JSON.parse(localStorage.getItem(BASKET_STORAGE_KEY) || "[]");
+        const expiryTimestamp = Number(localStorage.getItem(RESERVATION_EXPIRY_KEY) || 0);
+        const now = Date.now();
+
+        if (!Array.isArray(savedBasket) || savedBasket.length === 0) {
+          if (expiryTimestamp) {
+            clearStoredSelectionState();
+          }
+          return;
+        }
+
+        if (expiryTimestamp && now < expiryTimestamp) {
+          basketTickets.length = 0;
+          basketTickets.push(...savedBasket);
+          selectionCountdownSeconds = Math.max(
+            0,
+            Math.ceil((expiryTimestamp - now) / 1000),
+          );
+
+          const countdownTimer = document.querySelector(".selectionCountdown");
+          if (countdownTimer) {
+            countdownTimer.style.display = "flex";
+          }
+
+          updateSelectionCountdownDisplay();
+          return;
+        }
+
+        basketTickets.length = 0;
+        clearStoredSelectionState();
+      }
+
+      function stopSelectionCountdown() {
+        clearSelectionCountdown();
+        const countdownTimer = document.querySelector(".selectionCountdown");
+        if (countdownTimer) {
+          countdownTimer.style.display = "none";
+          countdownTimer.classList.remove("warning");
+        }
+      }
+
+      function startSelectionCountdown(remainingSeconds = RESERVATION_DURATION_SECONDS) {
+        clearSelectionCountdown();
+        selectionCountdownSeconds = Math.max(0, remainingSeconds);
+
+        const countdownTimer = document.querySelector(".selectionCountdown");
+        if (countdownTimer) {
+          countdownTimer.style.display = "flex";
+          countdownTimer.classList.remove("warning");
+        }
+
+        persistSelectionExpiry();
+        updateSelectionCountdownDisplay();
+
+        selectionCountdownId = setInterval(() => {
+          const expiryTimestamp = Number(
+            localStorage.getItem(RESERVATION_EXPIRY_KEY) || 0,
+          );
+          const now = Date.now();
+
+          selectionCountdownSeconds = Math.max(
+            0,
+            Math.ceil((expiryTimestamp - now) / 1000),
+          );
+
+          if (selectionCountdownSeconds <= 0) {
+            selectionCountdownSeconds = 0;
+            updateSelectionCountdownDisplay();
+            clearSelectionCountdown();
+
+            if (selectedSeat) {
+              selectedSeat = null;
+            }
+
+            const confirmDialogElement = document.querySelector("#confirmDialog");
+            if (confirmDialogElement) {
+              confirmDialogElement.style.display = "none";
+            }
+
+            basketTickets.length = 0;
+            clearStoredSelectionState();
+            renderBasket();
+            document.body.classList.remove("ticket-open");
+            stopSelectionCountdown();
+            return;
+          }
+
+          updateSelectionCountdownDisplay();
+        }, 1000);
+      }
+
+      restoreSelectionState();
+      renderBasket();
+
+      if (basketTickets.length > 0 && localStorage.getItem(RESERVATION_EXPIRY_KEY)) {
+        const expiryTimestamp = Number(localStorage.getItem(RESERVATION_EXPIRY_KEY) || 0);
+        const remainingSeconds = Math.max(
+          0,
+          Math.ceil((expiryTimestamp - Date.now()) / 1000),
+        );
+
+        if (remainingSeconds > 0) {
+          startSelectionCountdown(remainingSeconds);
+        }
+      }
+
       selectTktBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           document.body.classList.add("ticket-open");
@@ -698,6 +802,19 @@
 
       closeSelectTkt?.addEventListener("click", () => {
         document.body.classList.remove("ticket-open");
+        stopSelectionCountdown();
+        if (selectedSeat) {
+          selectedSeat = null;
+        }
+
+        const confirmDialogElement = document.querySelector("#confirmDialog");
+        if (confirmDialogElement) {
+          confirmDialogElement.style.display = "none";
+        }
+
+        if (basketTickets.length === 0) {
+          clearStoredSelectionState();
+        }
       });
     </script>
 
@@ -833,7 +950,7 @@
       window.addEventListener("resize", () => {
         if (document.body.classList.contains("ticket-open")) {
           renderHallMap();
-          attachSeatClickHandlers();
+          attachSeatClickHandllers();
         }
       });
     </script>
@@ -900,6 +1017,90 @@
         });
       }
     </script>
-    <script></script>
+    <script>
+      //confirm dialog//
+      const confirmDialog = document.querySelector("#confirmDialog");
+
+      const confirmYes = document.querySelector(".confirmYes");
+      const confirmNo = document.querySelector(".confirmNo");
+
+      const confirmSection = document.querySelector(".confirmSection");
+      const confirmRow = document.querySelector(".confirmRow");
+      const confirmSeat = document.querySelector(".confirmSeat");
+      const confirmPrice = document.querySelector(".confirmPrice");
+
+      let selectedSeat = null;
+
+      function attachSeatClickHandlers() {
+        const seats = document.querySelectorAll(".seat");
+
+        seats.forEach((seat) => {
+          seat.addEventListener("click", () => {
+            if (seat.classList.contains("selected")) return;
+
+            selectedSeat = seat;
+
+            const sectionId = seat.dataset.section;
+            const row = seat.dataset.row;
+            const seatNumber = seat.dataset.seat;
+
+            const section = hallMap.sections.find(
+              (section) => section.id === sectionId,
+            );
+
+            if (!section) return;
+
+            const ticket = selectedBand.tickets[section.ticketType];
+
+            if (!ticket) return;
+
+            confirmSection.textContent = section.name;
+            confirmRow.textContent = row;
+            confirmSeat.textContent = seatNumber;
+            confirmPrice.textContent = `${ticket.price}${ticket.currency}`;
+
+            confirmDialog.style.display = "flex";
+          });
+        });
+      }
+
+      confirmYes.addEventListener("click", () => {
+        if (!selectedSeat) return;
+
+        const sectionId = selectedSeat.dataset.section;
+        const row = Number(selectedSeat.dataset.row);
+        const seatNumber = Number(selectedSeat.dataset.seat);
+
+        const section = hallMap.sections.find(
+          (section) => section.id === sectionId,
+        );
+
+        if (!section) return;
+
+        const ticket = selectedBand.tickets[section.ticketType];
+
+        if (!ticket) return;
+
+        const ticketData = {
+          section: section.id,
+          row,
+          seat: seatNumber,
+          type: ticket.name,
+          price: Number(ticket.price),
+          currency: ticket.currency,
+          serviceFee: Number(ticket.serviceFee || 0),
+        };
+
+        addTicketToBasket(ticketData);
+        selectedSeat.classList.add("selected");
+        confirmDialog.style.display = "none";
+        selectedSeat = null;
+      });
+
+      confirmNo.addEventListener("click", () => {
+        confirmDialog.style.display = "none";
+        selectedSeat = null;
+      });
+    </script>
   </body>
 </html>
