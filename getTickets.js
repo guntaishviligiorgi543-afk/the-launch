@@ -300,6 +300,22 @@ function updateBasketTotals() {
     emptyTotalLabel.textContent = `(${totalWithoutFees}${currency})`;
 }
 
+function syncSelectedSeatStateOnMap() {
+  document.querySelectorAll(".seat").forEach((seat) => {
+    const seatKey = getSeatKey(
+      seat.dataset.section,
+      Number(seat.dataset.row),
+      Number(seat.dataset.seat),
+    );
+
+    const isSelected = basketTickets.some(
+      (item) => getSeatKey(item.section, item.row, item.seat) === seatKey,
+    );
+
+    seat.classList.toggle("selected", isSelected);
+  });
+}
+
 function renderBasket() {
   const emptyBskt = document.querySelector(".emptyBskt");
   const nonEmptyBskt = document.querySelector(".nonEmptyBskt");
@@ -364,6 +380,8 @@ function renderBasket() {
   document.querySelectorAll(".tktListContainer").forEach((container) => {
     renderTicketListForContainer(container);
   });
+
+  syncSelectedSeatStateOnMap();
 }
 
 function addTicketToBasket(ticket) {
@@ -408,13 +426,6 @@ function removeTicketFromBasket(ticket) {
 
   if (typeof persistBasketState === "function") {
     persistBasketState();
-  }
-
-  if (
-    basketTickets.length === 0 &&
-    typeof clearStoredSelectionState === "function"
-  ) {
-    clearStoredSelectionState();
   }
 
   renderBasket();

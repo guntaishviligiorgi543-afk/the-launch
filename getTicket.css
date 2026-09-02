@@ -687,7 +687,21 @@ body.ticket-open .selectionCountdown {
   font-weight: 700;
   letter-spacing: 2px;
 
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 420ms ease,
+    visibility 0ms linear 420ms;
+
   z-index: 5;
+}
+
+.stage.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 420ms ease,
+    visibility 0ms linear 0ms;
 }
 
 /* =========================================================
@@ -724,11 +738,23 @@ body.ticket-open .selectionCountdown {
 
   z-index: 4;
 
-  transform: translate(-50%, -50%);
-
+  /* Keep the final seat position unchanged; the hidden state only shifts each dot a little
+     so the map feels like a fan opening from right to left as the dots settle into place. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) translateX(var(--fan-shift, 0px)) scale(0.72);
   transition:
-    transform 0.15s ease,
-    filter 0.15s ease;
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease,
+    filter 0.15s ease,
+    visibility 0s linear 0s;
+  transition-delay: var(--seat-delay, 0ms);
+}
+
+.stageMap .seat.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .stageMap .seat:hover {

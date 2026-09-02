@@ -699,10 +699,11 @@
       }
 
       function persistSelectionExpiry() {
-        const expiryTimestamp = Date.now() + eventState.countdownSeconds * 1000;
+        eventState.expiryTimestamp =
+          Date.now() + eventState.countdownSeconds * 1000;
         localStorage.setItem(
           getReservationExpiryKey(),
-          String(expiryTimestamp),
+          String(eventState.expiryTimestamp),
         );
       }
 
@@ -725,6 +726,7 @@
         if (expiryTimestamp && now < expiryTimestamp) {
           basketTickets.length = 0;
           basketTickets.push(...savedBasket);
+          eventState.expiryTimestamp = expiryTimestamp;
           eventState.countdownSeconds = Math.max(
             0,
             Math.ceil((expiryTimestamp - now) / 1000),
@@ -755,6 +757,10 @@
       function startSelectionCountdown(
         remainingSeconds = RESERVATION_DURATION_SECONDS,
       ) {
+        if (eventState.countdownId) {
+          return;
+        }
+
         clearSelectionCountdown();
         eventState.countdownSeconds = Math.max(0, remainingSeconds);
 
@@ -769,7 +775,9 @@
 
         eventState.countdownId = setInterval(() => {
           const expiryTimestamp = Number(
-            localStorage.getItem(getReservationExpiryKey()) || 0,
+            eventState.expiryTimestamp ||
+              localStorage.getItem(getReservationExpiryKey()) ||
+              0,
           );
           const now = Date.now();
 
@@ -809,6 +817,13 @@
       renderBasket();
 
       if (
+        !eventState.countdownId &&
+        !localStorage.getItem(getReservationExpiryKey())
+      ) {
+        startSelectionCountdown();
+      }
+
+      if (
         basketTickets.length > 0 &&
         localStorage.getItem(getReservationExpiryKey())
       ) {
@@ -820,7 +835,7 @@
           Math.ceil((expiryTimestamp - Date.now()) / 1000),
         );
 
-        if (remainingSeconds > 0) {
+        if (remainingSeconds > 0 && !eventState.countdownId) {
           startSelectionCountdown(remainingSeconds);
         }
       }
@@ -828,6 +843,10 @@
       selectTktBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           document.body.classList.add("ticket-open");
+
+          if (!eventState.countdownId) {
+            startSelectionCountdown();
+          }
 
           setTimeout(() => {
             renderHallMap();
@@ -838,7 +857,7 @@
 
       closeSelectTkt?.addEventListener("click", () => {
         document.body.classList.remove("ticket-open");
-        stopSelectionCountdown();
+
         if (eventState.selectedSeat) {
           eventState.selectedSeat = null;
         }
@@ -848,7 +867,7 @@
           confirmDialogElement.style.display = "none";
         }
 
-        if (basketTickets.length === 0) {
+        if (basketTickets.length === 0 && !eventState.countdownId) {
           clearStoredSelectionState();
         }
       });
@@ -894,8 +913,6 @@
 
         stage.className = "stage";
         stage.textContent = "STAGE";
-
-        stageMap.appendChild(stage);
 
         /* =========================
            SECTIONS
@@ -965,8 +982,28 @@
               seatDiv.dataset.row = row;
               seatDiv.dataset.seat = seat;
 
+              const seatKey = getSeatKey(section.id, row, seat);
+              const isSelected = basketTickets.some(
+                (item) =>
+                  getSeatKey(item.section, item.row, item.seat) === seatKey,
+              );
+              if (isSelected) {
+                seatDiv.classList.add("selected");
+              }
+
               seatDiv.style.left = `${x}px`;
               seatDiv.style.top = `${y}px`;
+
+              // Create a subtle right-to-left fan open: seats farther to the right reveal first,
+              // while each subsequent seat gets a slightly later delay to feel like a fan spreading.
+              const fanShift = (centerX - x) * 0.18;
+              const revealDelay =
+                (totalSeats - seat) * 14 +
+                (section.rows - row) * 26 +
+                (x / Math.max(mapWidth, 1)) * 180;
+
+              seatDiv.style.setProperty("--fan-shift", `${fanShift}px`);
+              seatDiv.style.setProperty("--seat-delay", `${revealDelay}ms`);
 
               seatDiv.title = `${section.name} • Row ${row} • Seat ${seat}`;
 
@@ -976,6 +1013,35 @@
 
           stageMap.appendChild(sectionDiv);
         });
+
+        const seatNodes = stageMap.querySelectorAll(".seat");
+        let lastSeatDelay = 0;
+
+        seatNodes.forEach((seatNode) => {
+          const delay = Number.parseFloat(
+            seatNode.style.getPropertyValue("--seat-delay") || "0",
+          );
+          lastSeatDelay = Math.max(lastSeatDelay, delay);
+
+          requestAnimationFrame(() => {
+            seatNode.classList.add("is-visible");
+          });
+        });
+
+        stageMap.appendChild(stage);
+
+        // Reveal the stage last so the full audience map opens first and the stage fades in afterward.
+        setTimeout(
+          () => {
+            const stage = stageMap.querySelector(".stage");
+            if (stage) {
+              stage.classList.add("is-visible");
+            }
+          },
+          Math.max(260, lastSeatDelay + 240),
+        );
+
+        syncSelectedSeatStateOnMap();
       }
 
       /*
