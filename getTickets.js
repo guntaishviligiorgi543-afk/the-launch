@@ -2,7 +2,22 @@ const params = new URLSearchParams(window.location.search);
 const bandId = Number(params.get("id"));
 const selectedBand = bands.find((band) => band.id === bandId);
 
-const basketTickets = [];
+function getEventState() {
+  const stateByBand = window.__ticketState || (window.__ticketState = {});
+  if (!stateByBand[bandId]) {
+    stateByBand[bandId] = {
+      basket: [],
+      selectedSeat: null,
+      countdownId: null,
+      countdownSeconds: 10 * 60,
+    };
+  }
+
+  return stateByBand[bandId];
+}
+
+const eventState = getEventState();
+const basketTickets = eventState.basket;
 
 function getTicketMetaForSeat(sectionId, row, seatNumber) {
   const section = hallMap.sections.find((item) => item.id === sectionId);
@@ -215,7 +230,7 @@ function renderTicketListForContainer(container) {
         seatData.seat,
       );
       if (seat) {
-        selectedSeat = seat;
+        eventState.selectedSeat = seat;
         const section = hallMap.sections.find(
           (item) => item.id === seatData.section,
         );

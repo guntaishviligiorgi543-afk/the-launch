@@ -948,7 +948,7 @@ body.ticket-open .socIcons {
   gap: 20px;
   padding: 30px;
   background: white;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.5);
 }
 .confirmDialogContent p {
   margin: 0;

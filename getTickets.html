@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -538,7 +538,11 @@
         <div class="selectTktMap">
           <button class="closeSelectTktContainer">X</button>
 
-          <div class="selectionCountdown" aria-live="polite" style="display: none">
+          <div
+            class="selectionCountdown"
+            aria-live="polite"
+            style="display: none"
+          >
             <span class="selectionCountdownLabel">Reservation</span>
             <span class="selectionCountdownValue">06:00</span>
           </div>
@@ -640,8 +644,17 @@
       const RESERVATION_EXPIRY_KEY = "launchReservationExpiry";
       const BASKET_STORAGE_KEY = "launchBasketTickets";
 
-      let selectionCountdownId = null;
-      let selectionCountdownSeconds = RESERVATION_DURATION_SECONDS;
+      function getStorageKey(keyPrefix) {
+        return `${keyPrefix}_${bandId}`;
+      }
+
+      function getReservationExpiryKey() {
+        return getStorageKey(RESERVATION_EXPIRY_KEY);
+      }
+
+      function getBasketStorageKey() {
+        return getStorageKey(BASKET_STORAGE_KEY);
+      }
 
       function formatSelectionCountdown(totalSeconds) {
         const minutes = Math.floor(totalSeconds / 60);
@@ -650,41 +663,56 @@
       }
 
       function updateSelectionCountdownDisplay() {
-        const countdownValue = document.querySelector(".selectionCountdownValue");
+        const countdownValue = document.querySelector(
+          ".selectionCountdownValue",
+        );
         const countdownTimer = document.querySelector(".selectionCountdown");
 
         if (!countdownValue || !countdownTimer) return;
 
         countdownValue.textContent = formatSelectionCountdown(
-          selectionCountdownSeconds,
+          eventState.countdownSeconds,
         );
-        countdownTimer.classList.toggle("warning", selectionCountdownSeconds <= 60);
+        countdownTimer.classList.toggle(
+          "warning",
+          eventState.countdownSeconds <= 60,
+        );
       }
 
       function clearSelectionCountdown() {
-        if (selectionCountdownId) {
-          clearInterval(selectionCountdownId);
-          selectionCountdownId = null;
+        if (eventState.countdownId) {
+          clearInterval(eventState.countdownId);
+          eventState.countdownId = null;
         }
       }
 
       function clearStoredSelectionState() {
-        localStorage.removeItem(RESERVATION_EXPIRY_KEY);
-        localStorage.removeItem(BASKET_STORAGE_KEY);
+        localStorage.removeItem(getReservationExpiryKey());
+        localStorage.removeItem(getBasketStorageKey());
       }
 
       function persistBasketState() {
-        localStorage.setItem(BASKET_STORAGE_KEY, JSON.stringify(basketTickets));
+        localStorage.setItem(
+          getBasketStorageKey(),
+          JSON.stringify(basketTickets),
+        );
       }
 
       function persistSelectionExpiry() {
-        const expiryTimestamp = Date.now() + selectionCountdownSeconds * 1000;
-        localStorage.setItem(RESERVATION_EXPIRY_KEY, String(expiryTimestamp));
+        const expiryTimestamp = Date.now() + eventState.countdownSeconds * 1000;
+        localStorage.setItem(
+          getReservationExpiryKey(),
+          String(expiryTimestamp),
+        );
       }
 
       function restoreSelectionState() {
-        const savedBasket = JSON.parse(localStorage.getItem(BASKET_STORAGE_KEY) || "[]");
-        const expiryTimestamp = Number(localStorage.getItem(RESERVATION_EXPIRY_KEY) || 0);
+        const savedBasket = JSON.parse(
+          localStorage.getItem(getBasketStorageKey()) || "[]",
+        );
+        const expiryTimestamp = Number(
+          localStorage.getItem(getReservationExpiryKey()) || 0,
+        );
         const now = Date.now();
 
         if (!Array.isArray(savedBasket) || savedBasket.length === 0) {
@@ -697,7 +725,7 @@
         if (expiryTimestamp && now < expiryTimestamp) {
           basketTickets.length = 0;
           basketTickets.push(...savedBasket);
-          selectionCountdownSeconds = Math.max(
+          eventState.countdownSeconds = Math.max(
             0,
             Math.ceil((expiryTimestamp - now) / 1000),
           );
@@ -724,9 +752,11 @@
         }
       }
 
-      function startSelectionCountdown(remainingSeconds = RESERVATION_DURATION_SECONDS) {
+      function startSelectionCountdown(
+        remainingSeconds = RESERVATION_DURATION_SECONDS,
+      ) {
         clearSelectionCountdown();
-        selectionCountdownSeconds = Math.max(0, remainingSeconds);
+        eventState.countdownSeconds = Math.max(0, remainingSeconds);
 
         const countdownTimer = document.querySelector(".selectionCountdown");
         if (countdownTimer) {
@@ -737,27 +767,28 @@
         persistSelectionExpiry();
         updateSelectionCountdownDisplay();
 
-        selectionCountdownId = setInterval(() => {
+        eventState.countdownId = setInterval(() => {
           const expiryTimestamp = Number(
-            localStorage.getItem(RESERVATION_EXPIRY_KEY) || 0,
+            localStorage.getItem(getReservationExpiryKey()) || 0,
           );
           const now = Date.now();
 
-          selectionCountdownSeconds = Math.max(
+          eventState.countdownSeconds = Math.max(
             0,
             Math.ceil((expiryTimestamp - now) / 1000),
           );
 
-          if (selectionCountdownSeconds <= 0) {
-            selectionCountdownSeconds = 0;
+          if (eventState.countdownSeconds <= 0) {
+            eventState.countdownSeconds = 0;
             updateSelectionCountdownDisplay();
             clearSelectionCountdown();
 
-            if (selectedSeat) {
-              selectedSeat = null;
+            if (eventState.selectedSeat) {
+              eventState.selectedSeat = null;
             }
 
-            const confirmDialogElement = document.querySelector("#confirmDialog");
+            const confirmDialogElement =
+              document.querySelector("#confirmDialog");
             if (confirmDialogElement) {
               confirmDialogElement.style.display = "none";
             }
@@ -777,8 +808,13 @@
       restoreSelectionState();
       renderBasket();
 
-      if (basketTickets.length > 0 && localStorage.getItem(RESERVATION_EXPIRY_KEY)) {
-        const expiryTimestamp = Number(localStorage.getItem(RESERVATION_EXPIRY_KEY) || 0);
+      if (
+        basketTickets.length > 0 &&
+        localStorage.getItem(getReservationExpiryKey())
+      ) {
+        const expiryTimestamp = Number(
+          localStorage.getItem(getReservationExpiryKey()) || 0,
+        );
         const remainingSeconds = Math.max(
           0,
           Math.ceil((expiryTimestamp - Date.now()) / 1000),
@@ -803,8 +839,8 @@
       closeSelectTkt?.addEventListener("click", () => {
         document.body.classList.remove("ticket-open");
         stopSelectionCountdown();
-        if (selectedSeat) {
-          selectedSeat = null;
+        if (eventState.selectedSeat) {
+          eventState.selectedSeat = null;
         }
 
         const confirmDialogElement = document.querySelector("#confirmDialog");
@@ -1029,8 +1065,6 @@
       const confirmSeat = document.querySelector(".confirmSeat");
       const confirmPrice = document.querySelector(".confirmPrice");
 
-      let selectedSeat = null;
-
       function attachSeatClickHandlers() {
         const seats = document.querySelectorAll(".seat");
 
@@ -1038,7 +1072,7 @@
           seat.addEventListener("click", () => {
             if (seat.classList.contains("selected")) return;
 
-            selectedSeat = seat;
+            eventState.selectedSeat = seat;
 
             const sectionId = seat.dataset.section;
             const row = seat.dataset.row;
@@ -1065,8 +1099,9 @@
       }
 
       confirmYes.addEventListener("click", () => {
-        if (!selectedSeat) return;
+        if (!eventState.selectedSeat) return;
 
+        const selectedSeat = eventState.selectedSeat;
         const sectionId = selectedSeat.dataset.section;
         const row = Number(selectedSeat.dataset.row);
         const seatNumber = Number(selectedSeat.dataset.seat);
@@ -1094,12 +1129,12 @@
         addTicketToBasket(ticketData);
         selectedSeat.classList.add("selected");
         confirmDialog.style.display = "none";
-        selectedSeat = null;
+        eventState.selectedSeat = null;
       });
 
       confirmNo.addEventListener("click", () => {
         confirmDialog.style.display = "none";
-        selectedSeat = null;
+        eventState.selectedSeat = null;
       });
     </script>
   </body>
