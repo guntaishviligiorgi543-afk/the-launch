@@ -158,9 +158,11 @@
     logout.className = "mobileLogoutButton";
     logout.addEventListener("click", async () => {
       try {
-        await window.authApi.signOut();
-        setOpen(false);
-        renderAuth(null);
+        const signedOut = await window.authApi.requestSignOut();
+        if (signedOut) {
+          setOpen(false);
+          renderAuth(null);
+        }
       } catch (error) {
         console.error("Logout failed:", error);
       }
@@ -181,8 +183,8 @@
     if (headerAuth.textContent !== "logout") return;
     event.preventDefault();
     try {
-      await window.authApi.signOut();
-      renderAuth(null);
+      const signedOut = await window.authApi.requestSignOut();
+      if (signedOut) renderAuth(null);
     } catch (error) {
       console.error("Logout failed:", error);
     }

@@ -3,6 +3,7 @@
 
   const POINTER_DRAG_THRESHOLD = 6;
   const WHEEL_ZOOM_SENSITIVITY = 0.0015;
+  const DEFAULT_MAX_SCALE = 6;
 
   const clamp = (value, minimum, maximum) => Math.max(minimum, Math.min(maximum, value));
   const distance = (first, second) => Math.hypot(first.clientX - second.clientX, first.clientY - second.clientY);
@@ -19,11 +20,11 @@
     && (target.matches("input, textarea, select, button, [contenteditable='true']") || target.closest("[contenteditable='true']"));
 
   class HallMapViewportController {
-    static attachSvg({ viewport, svg, viewBox, maxScale = 5 }) {
+    static attachSvg({ viewport, svg, viewBox, maxScale = DEFAULT_MAX_SCALE }) {
       return new HallMapViewportController({ viewport, content: svg, mode: "svg", viewBox, maxScale });
     }
 
-    static attachHtml({ viewport, content, maxScale = 5 }) {
+    static attachHtml({ viewport, content, maxScale = DEFAULT_MAX_SCALE }) {
       return new HallMapViewportController({ viewport, content, mode: "html", maxScale });
     }
 

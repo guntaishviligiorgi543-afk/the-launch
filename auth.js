@@ -145,6 +145,110 @@
     }
   }
 
+  let logoutRequestInFlight = false;
+  let reservationLogoutDialog = null;
+  let reservationLogoutTimer = null;
+  let reservationLogoutState = null;
+
+  const formatReservationTime = (seconds) =>
+    `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+
+  const clearReservationLogoutDialog = () => {
+    if (reservationLogoutTimer) clearInterval(reservationLogoutTimer);
+    reservationLogoutTimer = null;
+    reservationLogoutState = null;
+    reservationLogoutDialog?.remove();
+    reservationLogoutDialog = null;
+    document.querySelector(".reservation-logout-dialog")?.remove();
+    document.body.classList.remove("reservation-logout-dialog-open");
+  };
+
+  const showReservationLogoutDialog = (reservation, redirectTo) => {
+    clearReservationLogoutDialog();
+    reservationLogoutState = { reservation, redirectTo, signingOut: false };
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      `<div class="reservation-logout-dialog" role="presentation"><section class="reservation-logout-dialog__content" role="dialog" aria-modal="true" aria-labelledby="reservationLogoutTitle" aria-describedby="reservationLogoutDescription"><button class="reservation-logout-dialog__close" type="button" aria-label="Close reservation warning" data-reservation-logout-close>&times;</button><p class="reservation-logout-dialog__eyebrow">Reservation notice</p><h2 id="reservationLogoutTitle">You have an active reservation</h2><p id="reservationLogoutDescription">Your selected tickets are currently reserved.</p><p class="reservation-logout-dialog__time">Time remaining: <strong data-reservation-logout-time>00:00</strong></p><p class="reservation-logout-dialog__warning" data-reservation-logout-status>Your selected tickets will be released automatically when the reservation time expires.</p><div class="reservation-logout-dialog__actions"><button type="button" data-reservation-finish>Finish Reservation</button><button type="button" data-reservation-logout>Log Out</button></div></section></div>`,
+    );
+    reservationLogoutDialog = document.querySelector(".reservation-logout-dialog");
+    document.body.classList.add("reservation-logout-dialog-open");
+    const time = reservationLogoutDialog.querySelector("[data-reservation-logout-time]");
+    const status = reservationLogoutDialog.querySelector("[data-reservation-logout-status]");
+    const close = reservationLogoutDialog.querySelector("[data-reservation-logout-close]");
+    const finish = reservationLogoutDialog.querySelector("[data-reservation-finish]");
+    const logout = reservationLogoutDialog.querySelector("[data-reservation-logout]");
+    close.addEventListener("click", clearReservationLogoutDialog);
+    const tick = () => {
+      const remaining = Math.max(
+        0,
+        Math.ceil((reservationLogoutState.reservation.expiry - Date.now()) / 1000),
+      );
+      time.textContent = formatReservationTime(remaining);
+      if (remaining) return true;
+      if (reservationLogoutTimer) clearInterval(reservationLogoutTimer);
+      reservationLogoutTimer = null;
+      finish.disabled = true;
+      status.textContent = "Your reservation has expired. You can now log out.";
+      return false;
+    };
+    if (tick()) reservationLogoutTimer = setInterval(tick, 1000);
+
+    finish.addEventListener("click", async () => {
+      if (reservationLogoutState?.signingOut || finish.disabled) return;
+      finish.disabled = true;
+      try {
+        const current = await window.reservationCountdown?.getActiveReservation?.();
+        if (!current) {
+          if (reservationLogoutTimer) clearInterval(reservationLogoutTimer);
+          reservationLogoutTimer = null;
+          time.textContent = "00:00";
+          status.textContent =
+            "Your reservation is no longer active. You can now log out.";
+          return;
+        }
+        clearReservationLogoutDialog();
+        const url = new URL("getTickets.html", window.location.href);
+        url.searchParams.set("id", current.eventId);
+        window.location.assign(url.href);
+      } catch (error) {
+        console.error("Unable to verify reservation:", error);
+        finish.disabled = false;
+      }
+    });
+
+    logout.addEventListener("click", async () => {
+      if (reservationLogoutState?.signingOut) return;
+      reservationLogoutState.signingOut = true;
+      finish.disabled = true;
+      logout.disabled = true;
+      try {
+        await signOut({ redirectTo: reservationLogoutState.redirectTo });
+      } catch (error) {
+        console.error("Logout failed:", error);
+        reservationLogoutState.signingOut = false;
+        finish.disabled = false;
+        logout.disabled = false;
+      }
+    });
+  };
+
+  async function requestSignOut({ redirectTo = null } = {}) {
+    if (logoutRequestInFlight || reservationLogoutState?.signingOut) return false;
+    logoutRequestInFlight = true;
+    try {
+      const reservation =
+        await window.reservationCountdown?.getActiveReservation?.();
+      if (reservation) {
+        showReservationLogoutDialog(reservation, redirectTo);
+        return false;
+      }
+      await signOut({ redirectTo });
+      return true;
+    } finally {
+      logoutRequestInFlight = false;
+    }
+  }
+
   async function updateEmail(email) {
     const { data, error } = await client.auth.updateUser(
       {
@@ -252,6 +356,7 @@
     signIn,
     verifyCurrentPassword,
     signUp,
+    requestSignOut,
     signOut,
     updateEmail,
     updatePassword,
@@ -266,4 +371,7 @@
     validatePassword,
     subscribeToAuthChanges,
   };
+  subscribeToAuthChanges((event) => {
+    if (event === "SIGNED_OUT") clearReservationLogoutDialog();
+  });
 })();

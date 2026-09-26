@@ -84,36 +84,51 @@
       tick();
       if (expiry) countdownId = setInterval(tick, 1000);
     };
+    const getActiveReservation = async () => {
+      const session = await window.authApi?.getSession();
+      if (!session?.user || !client) return null;
+      const { data, error } = await client
+        .from("cart_items")
+        .select(
+          "event_seat_id, event_seats!cart_items_event_seat_id_fkey(event_id, status, reserved_by, reserved_until)",
+        )
+        .eq("user_id", session.user.id)
+        .eq("event_seats.reserved_by", session.user.id)
+        .eq("event_seats.status", "reserved")
+        .gt("event_seats.reserved_until", new Date().toISOString())
+        .not("event_seat_id", "is", null);
+      if (error) throw error;
+      return (data || [])
+        .map((item) => ({
+          eventId: item.event_seats?.event_id,
+          expiry: new Date(item.event_seats?.reserved_until || 0).getTime(),
+        }))
+        .filter(
+          (reservation) =>
+            reservation.eventId &&
+            Number.isFinite(reservation.expiry) &&
+            reservation.expiry > Date.now(),
+        )
+        .sort((first, second) => first.expiry - second.expiry)[0] || null;
+    };
     const restore = async () => {
       if (isExcludedPage() || document.querySelector(".selectionCountdown")) {
         if (isExcludedPage()) clear();
         return;
       }
-      const session = await window.authApi?.getSession();
-      if (!session?.user || !client) return clear();
-      const { data, error } = await client
-        .from("cart_items")
-        .select(
-          "event_seat_id, event_seats!cart_items_event_seat_id_fkey(event_id, status, reserved_until)",
-        )
-        .eq("user_id", session.user.id)
-        .not("event_seat_id", "is", null);
-      if (error) throw error;
-      const reservations = (data || [])
-        .filter((item) => item.event_seats?.status === "reserved")
-        .map((item) => ({
-          eventId: item.event_seats?.event_id,
-          expiry: new Date(item.event_seats?.reserved_until || 0).getTime(),
-        }))
-        .filter((reservation) =>
-          Number.isFinite(reservation.expiry) && reservation.expiry > Date.now(),
-        )
-        .sort((first, second) => first.expiry - second.expiry);
-      if (!reservations.length) return clear();
-      start(reservations[0].expiry, { eventId: reservations[0].eventId });
+      const reservation = await getActiveReservation();
+      if (!reservation) return clear();
+      start(reservation.expiry, { eventId: reservation.eventId });
     };
 
-    return { clear, getActiveEventId: () => activeEventId, render, restore, start };
+    return {
+      clear,
+      getActiveEventId: () => activeEventId,
+      getActiveReservation,
+      render,
+      restore,
+      start,
+    };
   })();
 
   async function getRows() {
@@ -336,7 +351,11 @@
     console.error("Unable to restore reservation countdown:", error);
   });
   render().catch((error) => console.error(error));
-  window.authApi?.subscribeToAuthChanges(() => {
+  window.authApi?.subscribeToAuthChanges((event, session) => {
+    if (event === "SIGNED_OUT" || !session?.user) {
+      reservationCountdown.clear();
+      return;
+    }
     reservationCountdown.restore().catch((error) => {
       console.error("Unable to restore reservation countdown:", error);
     });

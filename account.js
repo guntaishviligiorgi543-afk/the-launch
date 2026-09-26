@@ -374,7 +374,13 @@
     logoutButton.disabled = true;
     logoutButton.querySelector("span").textContent = "Logging out...";
     try {
-      await window.authApi.signOut({ redirectTo: "index.html" });
+      const signedOut = await window.authApi.requestSignOut({
+        redirectTo: "index.html",
+      });
+      if (!signedOut) {
+        logoutButton.disabled = false;
+        logoutButton.querySelector("span").textContent = "Logout";
+      }
     } catch (error) {
       console.error(error);
       logoutButton.disabled = false;
